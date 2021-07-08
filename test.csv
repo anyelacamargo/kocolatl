@@ -1,33 +1,33 @@
-"ID_0","ISO","NAME_0","ID_1","NAME_1","TYPE_1","ENGTYPE_1","NL_NAME_1","VARNAME_1"
-"53","COL","Colombia","1","Amazonas","Comisaría","Commissiary",NA,NA
-"53","COL","Colombia","2","Antioquia","Departamento","Department",NA,NA
-"53","COL","Colombia","3","Arauca","Intendencia","Intendancy",NA,NA
-"53","COL","Colombia","4","Atlántico","Departamento","Department",NA,NA
-"53","COL","Colombia","5","Bolívar","Departamento","Department",NA,NA
-"53","COL","Colombia","6","Boyacá","Departamento","Department",NA,NA
-"53","COL","Colombia","7","Córdoba","Departamento","Department",NA,NA
-"53","COL","Colombia","8","Caldas","Departamento","Department",NA,NA
-"53","COL","Colombia","9","Caquetá","Intendencia","Intendancy",NA,NA
-"53","COL","Colombia","10","Casanare","Intendencia","Intendancy",NA,NA
-"53","COL","Colombia","11","Cauca","Departamento","Department",NA,NA
-"53","COL","Colombia","12","Cesar","Departamento","Department",NA,"El Cesar"
-"53","COL","Colombia","13","Chocó","Departamento","Department",NA,NA
-"53","COL","Colombia","14","Cundinamarca","Departamento","Department",NA,NA
-"53","COL","Colombia","15","Guainía","Comisaría","Commissiary",NA,"Guania"
-"53","COL","Colombia","16","Guaviare","Comisaría","Commissiary",NA,NA
-"53","COL","Colombia","17","Huila","Departamento","Department",NA,NA
-"53","COL","Colombia","18","La Guajira","Departamento","Department",NA,"Guajira|Goagira|La Goajira"
-"53","COL","Colombia","19","Magdalena","Departamento","Department",NA,"La Magdalena"
-"53","COL","Colombia","20","Meta","Departamento","Department",NA,NA
-"53","COL","Colombia","21","Nariño","Departamento","Department",NA,NA
-"53","COL","Colombia","22","Norte de Santander","Departamento","Department",NA,"Santander del Norte"
-"53","COL","Colombia","23","Putumayo","Intendencia","Intendancy",NA,NA
-"53","COL","Colombia","24","Quindío","Departamento","Department",NA,NA
-"53","COL","Colombia","25","Risaralda","Departamento","Department",NA,NA
-"53","COL","Colombia","26","San Andrés y Providencia","Departamento","Department",NA,"Saint Andrew and Providence"
-"53","COL","Colombia","27","Santander","Departamento","Department",NA,NA
-"53","COL","Colombia","28","Sucre","Departamento","Department",NA,NA
-"53","COL","Colombia","29","Tolima","Departamento","Department",NA,NA
-"53","COL","Colombia","30","Valle del Cauca","Departamento","Department",NA,"Valle"
-"53","COL","Colombia","31","Vaupés","Comisaría","Commissiary",NA,NA
-"53","COL","Colombia","32","Vichada","Comisaría","Commissiary",NA,NA
+"departamento","ID_0","ISO","NAME_0","ID_1","NAME_1","TYPE_1","ENGTYPE_1","NL_NAME_1","VARNAME_1","X2009","X2010","X2011","X2012","X2013","X2014","X2015","X2016","X2017","X2018","X2019","Region"
+"AMAZONAS","53","COL","Colombia","1","Amazonas","Comisaría","Commissiary",NA,NA,0,0,0,0,0,0,0,2,0,0,0.4,"Amazon"
+"ANTIOQUIA","53","COL","Colombia","2","Antioquia","Departamento","Department",NA,NA,203,3254,2537,3377,3478,3553,4391,5285,5407,4005,5259,"Andean"
+"ARAUCA","53","COL","Colombia","3","Arauca","Intendencia","Intendancy",NA,NA,3967,3988,6495,4501,4532,5448,5629,6398,5037,4478,4546,"Orinoquian"
+"ATLANTICO","53","COL","Colombia","4","Atlántico","Departamento","Department",NA,NA,1,0,0,0,0,0,1,1,0,0,0.5,"Caribean"
+"BOLIVAR","53","COL","Colombia","5","Bolívar","Departamento","Department",NA,NA,314,213,197,307,420,349,448,373,409,724,463,"Caribean"
+"BOYACA","53","COL","Colombia","6","Boyacá","Departamento","Department",NA,NA,219,201,563,446,810,683,103,1021,974,867,1191,"Andean"
+"CALDAS","53","COL","Colombia","8","Caldas","Departamento","Department",NA,NA,491,497,166,287,561,421,452,820,1018,967,1065,"Andean"
+"CAQUETA","53","COL","Colombia","9","Caquetá","Intendencia","Intendancy",NA,NA,139,123,145,149,149,207,113,106,177,114,350,"Amazon"
+"CASANARE","53","COL","Colombia","10","Casanare","Intendencia","Intendancy",NA,NA,56,4,12,82,151,247,253,56,204,44,53,"Orinoquian"
+"CAUCA","53","COL","Colombia","11","Cauca","Departamento","Department",NA,NA,263,331,287,373,310,414,450,583,595,732,454,"Pacific"
+"CESAR","53","COL","Colombia","12","Cesar","Departamento","Department",NA,"El Cesar",882,735,729,914,1178,1243,1046,1169,1734,1002,1531,"Caribean"
+"CHOCO","53","COL","Colombia","13","Chocó","Departamento","Department",NA,NA,61,19,24,212,322,385,332,454,605,162,134,"Pacific"
+"CORDOBA","53","COL","Colombia","7","Córdoba","Departamento","Department",NA,NA,81,216,221,249,358,437,485,659,457,401,710,"Caribean"
+"CUNDINAMARCA","53","COL","Colombia","14","Cundinamarca","Departamento","Department",NA,NA,551,957,630,944,1477,1573,1604,2141,2115,1504,2211,"Andean"
+"GUAINIA","53","COL","Colombia","15","Guainía","Comisaría","Commissiary",NA,"Guania",12,5,0,0,77,0,1,0,0,1,0.2,"Amazon"
+"GUAVIARE","53","COL","Colombia","16","Guaviare","Comisaría","Commissiary",NA,NA,0,0,14,58,0,83,146,155,287,64,83,"Amazon"
+"HUILA","53","COL","Colombia","17","Huila","Departamento","Department",NA,NA,3009,4237,2172,3708,3166,3301,3787,4159,4822,4466,4051,"Andean"
+"LA GUAJIRA","53","COL","Colombia","18","La Guajira","Departamento","Department",NA,"Guajira|Goagira|La Goajira",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,"Caribean"
+"MAGDALENA","53","COL","Colombia","19","Magdalena","Departamento","Department",NA,"La Magdalena",192,238,181,230,186,162,200,366,420,138,170,"Caribean"
+"META","53","COL","Colombia","20","Meta","Departamento","Department",NA,NA,676,965,199,1023,1155,1486,1592,1843,2071,161,2134,"Orinoquian"
+"NARINO","53","COL","Colombia","21","Nariño","Departamento","Department",NA,NA,1795,1152,2289,2882,2711,2763,2876,2059,2871,3376,3285,NA
+"NORTE DE SANTANDER","53","COL","Colombia","22","Norte de Santander","Departamento","Department",NA,"Santander del Norte",1339,1609,1002,2153,1779,1428,1814,1656,1786,1101,1512,"Andean"
+"PUTUMAYO","53","COL","Colombia","23","Putumayo","Intendencia","Intendancy",NA,NA,10,126,437,330,503,590,868,1004,1188,998,869,"Amazon"
+"QUINDIO","53","COL","Colombia","24","Quindío","Departamento","Department",NA,NA,0,0,0,0,4,9,46,60,74,167,230,"Andean"
+"RISARALDA","53","COL","Colombia","25","Risaralda","Departamento","Department",NA,NA,239,405,256,508,308,394,701,64,78,28,53,"Andean"
+"SAN ANDRES Y PROVIDENCIA","53","COL","Colombia","26","San Andrés y Providencia","Departamento","Department",NA,"Saint Andrew and Providence",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,"Insular"
+"SANTANDER","53","COL","Colombia","27","Santander","Departamento","Department",NA,NA,17272,19411,16165,16225,19517,19085,22424,22117,23042,23574,25158,"Andean"
+"SUCRE","53","COL","Colombia","28","Sucre","Departamento","Department",NA,NA,0,0,0,0,1,1,0,6,3,3,2,"Caribean"
+"TOLIMA","53","COL","Colombia","29","Tolima","Departamento","Department",NA,NA,2059,2892,1569,1986,3054,2515,3547,3527,459,4108,3928,"Andean"
+"VALLE DEL CAUCA","53","COL","Colombia","30","Valle del Cauca","Departamento","Department",NA,"Valle",452,716,913,725,527,953,558,690,505,427,277,"Pacific"
+"VAUPES","53","COL","Colombia","31","Vaupés","Comisaría","Commissiary",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,"Amazon"
+"VICHADA","53","COL","Colombia","32","Vichada","Comisaría","Commissiary",NA,NA,0,0,0,0,0,0,2,3,6,6,14,"Orinoquian"
