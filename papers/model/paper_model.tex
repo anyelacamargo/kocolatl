@@ -2,8 +2,13 @@
 %  For support, please attach all files needed for compiling as well as the log file, and specify your operating system, LaTeX version, and LaTeX editor.
 
 %=================================================================
-\documentclass[journal,article,submit,moreauthors,pdftex]{Definitions/mdpi} 
+
+
+%\documentclass[genes]{Definitions/mdpi} 
+\documentclass[genes,article,submit,moreauthors,pdftex,10pt,a4paper]{Definitions/mdpi}
 \usepackage{natbib}
+
+
 % For posting an early version of this manuscript as a preprint, you may use "preprints" as the journal and change "submit" to "accept". The document class line would be, e.g., \documentclass[preprints,article,accept,moreauthors,pdftex]{mdpi}. This is especially recommended for submission to arXiv, where line numbers should be removed before posting. For preprints.org, the editorial staff will make this change immediately prior to posting.
 
 %--------------------
@@ -106,40 +111,11 @@ $^{2}$ \quad BIOS 2; e-mail@e-mail.com}
 \abstract{As.}
 
 % Keywords
-\keyword{keyword 1; keyword 2; keyword 3 (List three to ten pertinent keywords specific to the article; yet reasonably common within the subject discipline.)} 
+\keyword{keyword 1; keyword 2; keyword 3} 
 
-% The fields PACS, MSC, and JEL may be left empty or commented out if not applicable
-%\PACS{J0101}
-%\MSC{}
-%\JEL{}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Only for the journal Diversity
-%\LSID{\url{http://}}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Only for the journal Applied Sciences:
-%\featuredapplication{Authors are encouraged to provide a concise description of the specific application or a potential application of the work. This section is not mandatory.}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Only for the journal Data:
-%\dataset{DOI number or link to the deposited data set in cases where the data set is published or set to be published separately. If the data set is submitted and will be published as a supplement to this paper in the journal Data, this field will be filled by the editors of the journal. In this case, please make sure to submit the data set as a supplement when entering your manuscript into our manuscript editorial system.}
-
-%\datasetlicense{license under which the data set is made available (CC0, CC-BY, CC-BY-SA, CC-BY-NC, etc.)}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Only for the journal Toxins
-%\keycontribution{The breakthroughs or highlights of the manuscript. Authors can write one or two sentences to describe the most important part of the paper.}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Only for the journal Encyclopedia
-%\encyclopediadef{Instead of the abstract}
-%\entrylink{The Link to this entry published on the encyclopedia platform.}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\setcounter{section}{-1} %% Remove this when starting to work on the template.
+
+%\setcounter{section}{-1} %% Remove this when starting to work on the template.
 
 \section{Introduction}
 
@@ -215,7 +191,7 @@ This section is not mandatory, but may be added if there are patents resulting f
 % References, variant A: external bibliography
 %=====================================
 \externalbibliography{yes}
-\bibliography{bioinfo.bib}
+\bibliography{bioinfo}
 
 %=====================================
 % References, variant B: internal bibliography
