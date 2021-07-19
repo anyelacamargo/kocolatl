@@ -2,13 +2,8 @@
 %  For support, please attach all files needed for compiling as well as the log file, and specify your operating system, LaTeX version, and LaTeX editor.
 
 %=================================================================
-
-
-%\documentclass[genes]{Definitions/mdpi} 
-\documentclass[genes,article,submit,moreauthors,pdftex,10pt,a4paper]{Definitions/mdpi}
+\documentclass[gene,journal,article,submit,moreauthors,pdftex]{Definitions/mdpi} 
 \usepackage{natbib}
-
-
 % For posting an early version of this manuscript as a preprint, you may use "preprints" as the journal and change "submit" to "accept". The document class line would be, e.g., \documentclass[preprints,article,accept,moreauthors,pdftex]{mdpi}. This is especially recommended for submission to arXiv, where line numbers should be removed before posting. For preprints.org, the editorial staff will make this change immediately prior to posting.
 
 %--------------------
@@ -111,27 +106,102 @@ $^{2}$ \quad BIOS 2; e-mail@e-mail.com}
 \abstract{As.}
 
 % Keywords
-\keyword{keyword 1; keyword 2; keyword 3} 
+\keyword{ICS95; CCN51; thermal time (List three to ten pertinent keywords specific to the article; yet reasonably common within the subject discipline.)} 
 
+% The fields PACS, MSC, and JEL may be left empty or commented out if not applicable
+%\PACS{J0101}
+%\MSC{}
+%\JEL{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Only for the journal Diversity
+%\LSID{\url{http://}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Only for the journal Applied Sciences:
+%\featuredapplication{Authors are encouraged to provide a concise description of the specific application or a potential application of the work. This section is not mandatory.}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Only for the journal Data:
+%\dataset{DOI number or link to the deposited data set in cases where the data set is published or set to be published separately. If the data set is submitted and will be published as a supplement to this paper in the journal Data, this field will be filled by the editors of the journal. In this case, please make sure to submit the data set as a supplement when entering your manuscript into our manuscript editorial system.}
+
+%\datasetlicense{license under which the data set is made available (CC0, CC-BY, CC-BY-SA, CC-BY-NC, etc.)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Only for the journal Toxins
+%\keycontribution{The breakthroughs or highlights of the manuscript. Authors can write one or two sentences to describe the most important part of the paper.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Only for the journal Encyclopedia
+%\encyclopediadef{Instead of the abstract}
+%\entrylink{The Link to this entry published on the encyclopedia platform.}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\setcounter{section}{-1} %% Remove this when starting to work on the template.
 
 \section{Introduction}
 
-A \cite{Woo2010}. 
+Cocoa ( \textit{Theobroma cacao }L. ) is a perennial tropical crop endemic to the South American rainforests \citep{zuidema2005, motamayor2002, argout2011, Rodriguez2019}. Only the 5\% of the world cocoa yield is desalinated for Fine-cocoa production due to the low productivity of  the traditional crop management \citep{argout2011}. Cacao plant member of the Malvaceae (formerly Sterculiaceae)  botanical family, is grown for its fruits, known as cacao pods.  \citep{ Niemenak2010, suarez2021}. 
+
+Cocoa has  a  long  tradition  in  Colombia  where  cocoa  is  widely  consumed  as  a  beverage. It is one of the crops promoted by the Colombian government in the social and agricultural development  programs aimed at favouring peace in post-conflict regions \citep{Rodriguez2019} (Abbott et al. 2018).
+
+In this work we used the SIMPLE crop model \citep{Zao2019simple} for three reasons: 1: That it is very comprehensively described in the original paper. 2: That the code was available in R for initial trials and 3: That it had already been successfully fitted to perennial crops in south America. Overall, the model simulates crop development, growth and yield, and predict the maturation day when the friut is ready to harvest. It includes 13 parameters to specify a crop type, with four of these for cultivar characteristics. Commonly available inputs that are required for the model include daily weather data, crop management, and soil water holding parameters and key dates. Malvaceae such as cotton \textit{ Gossypium hirstium} \citep{Nix2017cotton} wich is modeled in SIMPLE model \citep{Zao2019simple}. 
+ The aim of this study is predict the best time for harvest cocoa fruits. 
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Materials and Methods}
+\subsection{Phenology of Cocoa in Colombia}
+\begin{figure}[h]
+	\centering
+	\caption{\footnotesize {Phenology of cocoa in Colombia for crop modelling}} 
+	\includegraphics[scale=0.4]{images/phenology.png}\\
+	\footnotesize{Credits: Taken from Download from Dreamstime.com, 2021}
+	\label{fig:pheno}
+\end{figure}.
+
+\subsection{Crop model acquisition}
+
+A zip file of the R codes and input files for the SIMPLE model was kindly provided by Dr Chuang Zhao of the Agricultural and Biological Engineering Department, University of Florida. The main directory contains R codes, the “Parameter definition” Excel ® file, where the units required in each input file for the model are described, instructions and directories containing other input files. Examples of all input files are provided in the Zip files together with a range of data sets that can be used to check model operation after installation. Before running the SimpleB.R program initially line 72 was edited, with RStudio, to provide the full path for the installation. Also, the single year/single experiment mode was selected by setting the GridsimulationSwitch in line 58 to “off” by entering [1] at the end of line 58. After checking the first column in the Input/Simulation Management.csv file is all zeros apart from 1 on line alongside cocoa experiment, then “Source” at the top of the RStudio editing window was clicked. 
 
 
-\begin{quote}
-This is an example of a quote.
-\end{quote}
+In the SIMPLE model dummy files are provided for adding new crop data and weather data, and files 2 to 6 in the list below can be edited to define new cultivars or experiments etc. Then modifying the simulation management file will cause the new files to be read when the program is run.
+\begin{enumerate}
+	\item Input/Simulation Management.csv
+	\item Input/Species parameter.csv
+	\item Input/Cultivar.csv
+    \item Input/Treatment.csv	
+    \item Input/Irrigation.csv
+    \item Input/Soil.csv
+    \item Observation/Obsdummy crop Exp name.csv	
+    \item Weather/dummy weather.WTH
+\end{enumerate}
+
+\subsection{Applying the SIMPLE model for the Colombia cocoa crop }
+
+In outline the procedure used was a sequential process of modifying or adding the appropriate files, changing the parameters in the simulation management file, running the program and inspecting the results. This cycle was then repeated until the dry matter yields for Colombia were reasonably reproduced in the results. 
+The first step was add the new experiment for cocoa in the dummy crop and experiment names were replaced with our crop and treatment names in the input files and flowering and harvest dates were changed to harvest at 6 months after flowering to check that our modifications could be read. Initially, the new experiment name “KOKOlatl” for the cultivar ICS 95 was used in the species parameter file with other parameters and data founded in papers \textcolor{red}{debo completar eso con la bibliografia de donde saque datos de fisio}, including irrigation, soil features and radiation use efficiency. An appropriate treatment label was added (Figure 7), but all other options pointed to the test data from Brazil.  
+
+\subsection{Input data acquisition } 
+Input Weather data were sourced from the POWER Data Access Viewer \citep{nasapower}, which allows automatic download. These were used in as inputs for SIMPLE model. Weather data had to be transformed to .WHT file.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
+\begin{figure}[h]
+	\centering
+	\caption{\footnotesize {SIMPLE model output for cocoa in Colombia }} 
+	\includegraphics[scale=0.4]{images/averageS.png}\\
+	\label{fig:weather}
+\end{figure}.
 
+\begin{figure}[h]
+	\centering
+	\caption{\footnotesize {SIMPLE model output for cocoa in Colombia }} 
+	\includegraphics[scale=0.4]{images/outmodel.jpg}\\
+	\label{fig:m1}
+\end{figure}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussion}
@@ -174,6 +244,7 @@ This section is not mandatory, but may be added if there are patents resulting f
 %% Optional
 
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{paracol}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -191,7 +262,8 @@ This section is not mandatory, but may be added if there are patents resulting f
 % References, variant A: external bibliography
 %=====================================
 \externalbibliography{yes}
-\bibliography{bioinfo}
+\bibliography{kokobib}
+
 
 %=====================================
 % References, variant B: internal bibliography
@@ -225,6 +297,7 @@ This section is not mandatory, but may be added if there are patents resulting f
 
 %\bibliographystyle{te}
 %\bibliography{bioinfo}
+
 
 % If authors have biography, please use the format below
 %\section*{Short Biography of Authors}
