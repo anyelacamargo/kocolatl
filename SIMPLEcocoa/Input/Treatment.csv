@@ -1,0 +1,71 @@
+Species*,Exp*,Trt*,Label,Weather,CO2,SowingDate,HarvestDate,SoilName*,Cultivar*,IrrigationTrt,MaxIntercept,InitialBio,InitialTT ,InitialFsolar ,NOTE
+wheat,FACE95,1,Full_irri-Normal CO2,MAR29601,350,95355,,Loamy sand1,Yecora Rojo,2,0.95,1,0,0.001,Trt2
+wheat,FACE95,2,Full_irri-High CO2,MAR29601,550,95355,,Loamy sand1,Yecora Rojo,2,0.95,1,0,0.001,Trt4
+wheat,FACE92,1,Dry_Normal CO2,MARI9201,350,92353,,Loamy sand1,Yecora Rojo,1,0.95,1,0,0.001,Trt1
+wheat,FACE92,2,Wet_Normal CO2,MARI9201,350,92353,,Loamy sand1,Yecora Rojo,2,0.95,1,0,0.001,Trt2
+wheat,FACE92,3,Dry_High CO2,MAR29201,550,92353,,Loamy sand1,Yecora Rojo,1,0.95,1,0,0.001,Trt3
+wheat,FACE92,4,Wet_High CO2,MAR29201,550,92353,,Loamy sand1,Yecora Rojo,2,0.95,1,0,0.001,Trt4
+wheat,HSCE0701,1,01DEC08 C_T70,AZ000701,350,8336,,Loamy sand1,Yecora Rojo,36,0.95,1,0,0.001,T70
+wheat,HSCE0701,4,02JAN08 C_T31,AZ000701,350,8002,,Loamy sand1,Yecora Rojo,14,0.95,1,0,0.001,T31
+wheat,HSCE0701,7,01DEC08 H_T73,AZ610801,350,8336,,Loamy sand1,Yecora Rojo,39,0.95,1,0,0.001,T73
+wheat,HSCE0701,10,12JAN09 C_T79,AZ000701,350,9012,,Loamy sand1,Yecora Rojo,42,0.95,1,0,0.001,T79
+wheat,HSCE0701,11,02JAN08 H_T34 ,AZ310801,350,8002,,Loamy sand1,Yecora Rojo,17,0.95,1,0,0.001,T34
+wheat,HSCE0701,14,13FEB08 C_T40,AZ000701,350,8044,,Loamy sand1,Yecora Rojo,20,0.95,1,0,0.001,T40
+wheat,HSCE0701,15,10MAR08 C_T43,AZ000701,350,8070,,Loamy sand1,Yecora Rojo,21,0.95,1,0,0.001,T43
+wheat,HSCE0701,18,10MAR08 H_T46,AZ440801,350,8070,,Loamy sand1,Yecora Rojo,24,0.95,1,0,0.001,T46
+wheat,HSCE0701,21,13MAR07 C_T1 ,AZ000701,350,7072,,Loamy sand1,Yecora Rojo,1,0.95,1,0,0.001,T1
+wheat,HSCE0701,24,13MAR07 H_T4 ,AZ110701,350,7072,,Loamy sand1,Yecora Rojo,1,0.95,1,0,0.001,T4
+wheat,HSCE0701,27,28APR08 C_T52,AZ000701,350,8119,,Loamy sand1,Yecora Rojo,27,0.95,1,0,0.001,T52
+wheat,HSCE0701,28,19APR07 C_T10,AZ000701,350,7109,,Loamy sand1,Yecora Rojo,4,0.95,1,0,0.001,T10
+wheat,NEWZ9201,1,Full_irri_(606mm),Newzland,350,91159,,Clay loam1,Batten,1,0.95,1,0,0.001,Trt1
+wheat,NEWZ9201,2,Irri_early_dry_(493mm),Newzland,350,91159,,Clay loam1,Batten,2,0.95,1,0,0.001,Trt2
+wheat,NEWZ9201,3,Irri_early_dry_(163mm),Newzland,350,91159,,Clay loam1,Batten,3,0.95,1,0,0.001,Trt3
+wheat,NEWZ9201,4,Irri_late_dry_(89mm),Newzland,350,91159,,Clay loam1,Batten,4,0.95,1,0,0.001,Trt4
+wheat,NEWZ9201,5,Irri_late_dry_(164mm),Newzland,350,91159,,Clay loam1,Batten,5,0.95,1,0,0.001,Trt5
+wheat,NEWZ9201,6,Irri_late_dry_(263mm),Newzland,350,91159,,Clay loam1,Batten,6,0.95,1,0,0.001,Trt6
+wheat,NEWZ9201,7,Rainfed,Newzland,350,91159,,Clay loam1,Batten,0,0.95,1,0,0.001,Trt7
+soybean,UFGA7801,1,Irri (190mm)-Brag-CV,UFGA7801,350,78166,,Sand1,Bragg,1,0.95,1,0,0.001,DSSAT
+soybean,UFGA7801,2,Rainfed-Brag CV,UFGA7801,350,78166,,Sand1,Bragg,0,0.95,1,0,0.001,DSSAT
+soybean,UFGA8401,1,Irri (341mm)-Bragg CV,UFGA8401,350,84164,,Sand1,Bragg,1,0.95,1,0,0.001,DSSAT
+soybean,UFGA8401,2,Rainfed-Brag CV,UFGA8401,350,84164,,Sand1,Bragg,2,0.95,1,0,0.001,DSSAT
+soybean,IUAM,1,88May11_rainfed-Williams82 CV,IUAM8801,350,88132,,Sandy loam1,Williams82,0,0.95,1,0,0.001,1988-DSSAT -T1
+soybean,IUAM,2,90May7_rainfed-William82,IUAM9001,350,90128,,Sandy loam1,Williams82,0,0.95,1,0,0.001,1990-DSSAT
+soybean,OHWO,1,88May2_irri-Williams82,OHWO8801,350,88122,,Clay loam2,Williams82,1,0.95,1,0,0.001,1988-DSSAT
+soybean,OHWO,2,90April29_rainfed-William82,OHWO9001,350,90120,,Clay loam2,Williams82,0,0.95,1,0,0.001,1990-DSSAT
+rice,IRMA9203,1,27N + 30N late,IRLB9201,350,92195,,Loamy sand2,IR72,0,0.95,16,350,0.006,Trt4-DSSAT
+maize,UFGA8201,1,Rainfed,UFGA8201,350,82057,,Loamy sand3,McCurdy 84aa,1,0.95,1,0,0.001,Trt2-DSSAT
+maize,UFGA8201,2,Full_irri,UFGA8201,350,82057,,Loamy sand3,McCurdy 84aa,2,0.95,1,0,0.001,Trt4-DSSAT
+maize,UFGA8201,3,Irri_veg_stress,UFGA8201,350,82057,,Loamy sand3,McCurdy 84aa,3,0.95,1,0,0.001,Trt6-DSSAT
+potato,AUCB7001,1,Radiation=100%-Sebago CV,AUCB7001,350,70222,70356,Loamy sand4,Sebago,0,0.95,1,0,0.001,DSSAT-T1
+potato,AUCB7001,2,Radiation= 79%- Sebago CV,AUCB7002,350,70222,70356,Loamy sand4,Sebago,0,0.95,1,0,0.001,DSSAT-T2
+potato,AUCB7001,3,Radiation= 66%- Sebago CV,AUCB7003,350,70222,70356,Loamy sand4,Sebago,0,0.95,1,0,0.001,DSSAT-T3
+potato,AUHU9601,1,High-N-Desiree,AUHU9601,350,96118,96250,Loamy sand5,Desiree,0,0.95,1,0,0.001,Trt2
+potato,AUHU9801,1,High-N-Desiree,AUHU9801,350,98147,98285,Loamy sand5,Desiree,0,0.95,1,0,0.001,Trt1
+potato,IAWM9901,1,Cult-Desiree,IAWM9901,350,99120,99236,Loamy sand6,Desiree,0,0.95,1,0,0.001,Trt1
+potato,IAWM9901,2,Cult-Zibaihua,IAWM9901,350,99120,99236,Loamy sand6,Zibaihua,0,0.95,1,0,0.001,Trt4
+potato,IAWM9901,3,Cult-Jinguan,IAWM9901,350,99120,99236,Loamy sand6,Zibaihua,0,0.95,1,0,0.001,Trt7
+potato,WAPA9202,1,Russet Burbank_1992,WAPA9201,350,92102,92223,Loamy sand7,Russet Burbank,1,0.95,1,0,0.001,
+potato,WAPA9202,3,Russet Burbank_1993,WAPA9301,350,93096,93228,Loamy sand7,Russet Burbank,2,0.95,1,0,0.001,
+potato,WAPA9202,5,Russet Burbank_1994,WAPA9401,350,94095,94227,Loamy sand7,Russet Burbank,3,0.95,1,0,0.001,
+potato,WAPA9202,7,Russet Burbank_1995,WAPA9501,350,95095,95225,Loamy sand7,Russet Burbank,4,0.95,1,0,0.001,
+potato,WAPA9202,2,Hilite Russet_1992,WAPA9201,350,92102,92223,Loamy sand7,Hilite Russet,1,0.95,1,0,0.001,
+potato,WAPA9202,4,Hilite Russet_1993,WAPA9301,350,93096,93228,Loamy sand7,Hilite Russet,2,0.95,1,0,0.001,
+potato,WAPA9202,6,Hilite Russet_1994,WAPA9401,350,94095,94227,Loamy sand7,Hilite Russet,3,0.95,1,0,0.001,
+potato,WAPA9202,8,Hilite Russet_1995,WAPA9501,350,95095,95225,Loamy sand7,Hilite Russet,4,0.95,1,0,0.001,
+cotton,AZMC8901,1,Control,AZMC8901,353,89107,89263,Loamy sand8,Deltapine77,1,0.9,1,0,0.001,Trt2-DSSAT
+cotton,AZMC8901,2,High-CO2,AZMC8901,510,89107,89263,Loamy sand8,Deltapine77,2,0.9,1,0,0.001,Trt2-DSSAT
+grbean,UFGA0701,1,High N-Opt Irr,UFGA0701,383,7074,7136,Sand2,Bronco Habit 1,1,0.95,1,0,0.001,Trt4-DSSAT
+sweetcorn,UFCI0201,1,High-N,UFCI0201,372,2116,2185,Clay1,GSS0966 sh2,0,0.95,1,0,0.001,Trt5-DSSAT
+tomato,UFGA9601,1,High-N- Agriset761 CV,UFGA9601,350,96074,96165,Sandy loam2,Agriset761,1,0.9,1,0,0.001,Trt5-DSSAT
+tomato,UFBR9401,1,High-N-Irri-SunnySD CV,UFBR9401,350,94060,94160,Clay loam3,SunnySD,1,0.95,1,0,0.001,Trt3-DSSAT
+peanut,UFGA8401,1,Irri,UFGA8401,344,84164,84307,Sand3,FLORUNNER,1,0.95,1,0,0.001,Trt1-DSSAT
+cassava,CCPA7801,1,CVtrial-Irrig,CCPA7801,350,78349,,Sandy loam3,MCol-1684,1,0.75,1,0,0.001,Trt1-PAnaAnaCV Camili et al 2015
+banana,BRBA0503,1,South Brazil,BRBA0503,381,5344,6365,Loamy sand9,Prata An?,1,0.95,1,0,0.001,Trt7-HighN-no foliar fertilization-Smolen and sadi 2008
+carrot,CAPO0301,1,South Polonia-N trial-no irrig,CAPO0301,376,3118,3258,Sand4,Kazan F1,0,0.95,1,0,0.001,Trt1-DSSAT
+drybean,UFGA8601,1,Portillo Sintet-daily,UFGA8601,350,86084,,Sand5,Porrillo Sintetico,1,0.95,1,0,0.001,Trt2-DSSAT
+drybean,UFGA8601,2,Portillo Sintet-4th day,UFGA8601,350,86084,,Sand5,Porrillo Sintetico,2,0.95,1,0,0.001,Trt3-DSSAT
+drybean,UFGA8601,3,Portillo Sintet-8th day,UFGA8601,350,86084,,Sand5,Porrillo Sintetico,3,0.95,1,0,0.001,Trt4-DSSAT
+drybean,UFGA8601,4,Portillo Sintet-Spec,UFGA8601,350,86084,,Sand5,Porrillo Sintetico,4,0.95,1,0,0.001,
+dummy crop,Exp name,1,Dummy label name,Dummy weather,350,95355,,Dummy soil,Dummy cultivar,2,0.95,1,0,0.001,Trt2
+bananacol,COLena,1,North Colombia,COLBAN2019,381,18344,19365,Loamy sand9,Cavendish,1,0.95,1,0,0.001,Trt1
+cocoa,KOKOlatl,1,North Colombia,KOKOS,400,19193,20008,Loamy sand4,ICS 95,1,0.95,1,0,0.001,Trt1

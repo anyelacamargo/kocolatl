@@ -1,0 +1,71 @@
+ON_Off,Species*,Exp*,Trt*,Label,Water,NOTE
+0,wheat,FACE95,1,Full_irri-Normal CO2,yes,Trt2
+0,wheat,FACE95,2,Full_irri-High CO2,yes,Trt4
+0,wheat,FACE92,1,Dry_Normal CO2,yes,Trt1
+0,wheat,FACE92,2,Wet_Normal CO2,yes,Trt2
+0,wheat,FACE92,3,Dry_High CO2,yes,Trt3
+0,wheat,FACE92,4,Wet_High CO2,yes,Trt4
+0,wheat,HSCE0701,1,01DEC08 C_T70,yes,T70
+0,wheat,HSCE0701,4,02JAN08 C_T31,yes,T31
+0,wheat,HSCE0701,7,01DEC08 H_T73,yes,T73
+0,wheat,HSCE0701,10,12JAN09 C_T79,yes,T79
+0,wheat,HSCE0701,11,02JAN08 H_T34 ,yes,T34
+0,wheat,HSCE0701,14,13FEB08 C_T40,yes,T40
+0,wheat,HSCE0701,15,10MAR08 C_T43,yes,T43
+0,wheat,HSCE0701,18,10MAR08 H_T46,yes,T46
+0,wheat,HSCE0701,21,13MAR07 C_T1 ,yes,T1
+0,wheat,HSCE0701,24,13MAR07 H_T4 ,yes,T4
+0,wheat,HSCE0701,27,28APR08 C_T52,yes,T52
+0,wheat,HSCE0701,28,19APR07 C_T10,yes,T10
+0,wheat,NEWZ9201,1,Full_irri_(606mm),yes,Trt1
+0,wheat,NEWZ9201,2,Irri_early_dry_(493mm),yes,Trt2
+0,wheat,NEWZ9201,3,Irri_early_dry_(163mm),yes,Trt3
+0,wheat,NEWZ9201,4,Irri_late_dry_(89mm),yes,Trt4
+0,wheat,NEWZ9201,5,Irri_late_dry_(164mm),yes,Trt5
+0,wheat,NEWZ9201,6,Irri_late_dry_(263mm),yes,Trt6
+0,wheat,NEWZ9201,7,Rainfed,yes,Trt7
+0,soybean,UFGA7801,1,Irri (190mm)-Brag-CV,yes,DSSAT
+0,soybean,UFGA7801,2,Rainfed-Brag CV,yes,DSSAT
+0,soybean,UFGA8401,1,Irri (341mm)-Bragg CV,yes,DSSAT
+0,soybean,UFGA8401,2,Rainfed-Brag CV,yes,DSSAT
+0,soybean,IUAM,1,88May11_rainfed-Williams82 CV,yes,1988-DSSAT -T1
+0,soybean,IUAM,2,90May7_rainfed-William82,yes,1990-DSSAT
+0,soybean,OHWO,1,88May2_irri-Williams82,yes,1988-DSSAT
+0,soybean,OHWO,2,90April29_rainfed-William82,yes,1990-DSSAT
+0,rice,IRMA9203,1,27N + 30N late,no,Trt4-DSSAT
+0,maize,UFGA8201,1,Rainfed,yes,Trt2-DSSAT
+0,maize,UFGA8201,2,Full_irri,yes,Trt4-DSSAT
+0,maize,UFGA8201,3,Irri_veg_stress,yes,Trt6-DSSAT
+0,potato,AUCB7001,1,Radiation=100%-Sebago CV,yes,DSSAT-T1
+0,potato,AUCB7001,2,Radiation= 79%- Sebago CV,yes,DSSAT-T2
+0,potato,AUCB7001,3,Radiation= 66%- Sebago CV,yes,DSSAT-T3
+0,potato,AUHU9601,1,High-N-Desiree,no,Trt2
+0,potato,AUHU9801,1,High-N-Desiree,no,Trt1
+0,potato,IAWM9901,1,Cult-Desiree,no,Trt1
+0,potato,IAWM9901,2,Cult-Zibaihua,no,Trt4
+0,potato,IAWM9901,3,Cult-Jinguan,no,Trt7
+0,potato,WAPA9202,1,Russet Burbank_1992,no,
+0,potato,WAPA9202,3,Russet Burbank_1993,no,
+0,potato,WAPA9202,5,Russet Burbank_1994,no,
+0,potato,WAPA9202,7,Russet Burbank_1995,no,
+0,potato,WAPA9202,2,Hilite Russet_1992,no,
+0,potato,WAPA9202,4,Hilite Russet_1993,no,
+0,potato,WAPA9202,6,Hilite Russet_1994,no,
+0,potato,WAPA9202,8,Hilite Russet_1995,no,
+0,cotton,AZMC8901,1,Control,yes,Trt2-DSSAT
+0,cotton,AZMC8901,2,High-CO2,yes,Trt2-DSSAT
+0,grbean,UFGA0701,1,High N-Opt Irr,yes,Trt4-DSSAT
+0,sweetcorn,UFCI0201,1,High-N,yes,Trt5-DSSAT
+0,tomato,UFGA9601,1,High-N- Agriset761 CV,yes,Trt5-DSSAT
+0,tomato,UFBR9401,1,High-N-Irri-SunnySD CV,yes,Trt3-DSSAT
+0,peanut,UFGA8401,1,Irri,yes,Trt1-DSSAT
+0,cassava,CCPA7801,1,CVtrial-Irrig,yes,Trt1-PAnaAnaCV Camili et al 2015
+0,banana,BRBA0503,1,South Brazil,yes,Trt7-HighN-no foliar fertilization-Smolen and sadi 2008
+0,carrot,CAPO0301,1,South Polonia-N trial-no irrig,no,Trt1-DSSAT
+0,drybean,UFGA8601,1,Portillo Sintet-daily,yes,Trt2-DSSAT
+0,drybean,UFGA8601,2,Portillo Sintet-4th day,yes,Trt3-DSSAT
+0,drybean,UFGA8601,3,Portillo Sintet-8th day,yes,Trt4-DSSAT
+0,drybean,UFGA8601,4,Portillo Sintet-Spec,yes,
+0,bananacol,COLena,1,North Colombia,no,Trt1
+0,dummy crop,Exp name,1,Dummy label name,yes,Trt2
+1,cocoa,KOKOlatl,1,North Colombia,yes,Trt1
