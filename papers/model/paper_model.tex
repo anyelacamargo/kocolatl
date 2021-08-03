@@ -103,10 +103,10 @@ $^{2}$ \quad BIOS 2; e-mail@e-mail.com}
 %\conference{} % An extended version of a conference paper
 
 % Abstract (Do not insert blank lines, i.e. \\) 
-\abstract{ Crop modelling can support agronomical decisions of crop production under a range of scenarios improving competitiveness. Cocoa production systems in Latin America has a high importance over social and economic development, facing  the fight against hunger and poverty. Cocoa fruits development can be considered as the result of a number of physiological and morphological processes that can be described by mathematical relationships even under uncontrolled environments. We parametrized the SIMPLE crop model \citep{Zao2019simple} to predict the best time for harvest cocoa fruits in Colombia. The aim of this study is develop a practical tool for farmers using flowering date and weather variables (Solar radiation, rain and temperature) easily available for crop modelling to understand and predict the phenology of cacao trees which is key to produce high quality cacao beans.}
+\abstract{Crop modelling can support agronomical decisions of crop production under a range of scenarios improving competitiveness. Cocoa production systems in Latin America has a high importance over social and economic development, facing  the fight against hunger and poverty. Cocoa fruits development can be considered as the result of a number of physiological and morphological processes that can be described by mathematical relationships even under uncontrolled environments. We parametrized the SIMPLE crop model \citep{Zao2019simple} to predict the best time for harvest cocoa fruits in Colombia. The aim of this study is develop a practical tool for farmers using flowering date and weather variables (Solar radiation, rain and temperature) easily available for crop modelling to understand and predict the phenology of cacao trees which is key to produce high quality cacao beans. }
 
 % Keywords
-\keyword{ICS95; CCN51; thermal time, flowering date} 
+\keyword{ICS95; CCN51; thermal time, flowering date } 
 
 % The fields PACS, MSC, and JEL may be left empty or commented out if not applicable
 %\PACS{J0101}
@@ -154,21 +154,29 @@ In this paper, we present a physiological parametrization of SIMPLE crop model f
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Materials and Methods}
-\subsection{Phenology of Cocoa in Colombia}
+\subsection{Floral Phenology of Cocoa }
+In the SIMPLE model we simulate the floral phenology from the date of inflorescence emergence (BBCH scale 5) to predict the date of ripening of fruit and seed (BBCH 8) \citep{Niemenak2010} (See figure \ref{fig:pheno}). For modelling purposes the crop cycle of cocoa as perennial plant does not start at the plantation date such as annual crops where usually the planting date as start point of the crop cycle to model. The growth period of the fruit can varied from  110 to 150  daa (days after anthesis) \citep{lopez2018} when cacao fruits reaches the physiological maturity, but if can be harvested at 170 days daa \citep{Niemenak2010}. 
+
+ 
 \begin{figure}[h]
 	\centering
-	\caption{\footnotesize {Phenology of cocoa in Colombia for crop modelling}} 
-	\includegraphics[scale=0.4]{images/phenology.png}\\
-	\footnotesize{Credits: Taken from Download from Dreamstime.com, 2021}
+	\caption{\footnotesize {Phenology of cocoa in Colombia for crop modelling\\}} 
+	\includegraphics[scale=0.5]{images/phenology.png}\\
+	\footnotesize{Credits: Taken from phys.org \citep{toledo2021} and \cite{lopez2018}}
 	\label{fig:pheno}
-\end{figure}.
+\end{figure}
+\newpage
 
-\subsection{Crop model acquisition}
+\subsection{Input data acquisition for SIMPLE crop model calibration}
+Input variables required to run SIMPLE model for cocoa include the flowering date and daily weather of solar radiation (SRAD), maximum and minimum temperature (TMAX, TMIN) and rain. Weather data as csv file was  downloaded from the POWER Data Access Viewer \citep{nasapower} from January 01 2018 to December 31 2020. The csv file had to be transformed to .WHT file using R 1.4 version \citep{Rstudio2020}. 
 
-A zip file of the R codes and input files for the SIMPLE model was kindly provided by Dr Chuang Zhao of the Agricultural and Biological Engineering Department, University of Florida. The main directory contains R codes, the “Parameter definition” Excel ® file, where the units required in each input file for the model are described, instructions and directories containing other input files. Examples of all input files are provided in the Zip files together with a range of data sets that can be used to check model operation after installation. Before running the SimpleB.R program initially line 72 was edited, with RStudio, to provide the full path for the installation. Also, the single year/single experiment mode was selected by setting the GridsimulationSwitch in line 58 to “off” by entering [1] at the end of line 58. After checking the first column in the Input/Simulation Management.csv file is all zeros apart from 1 on line alongside cocoa experiment, then “Source” at the top of the RStudio editing window was clicked. 
+\subsection{SIMPLE crop model calibration}
 
+The procedure for the model calibration used was a sequential process of modifying or adding the appropriate files, changing the parameters in the simulation management file, running the program and inspecting the results. This cycle was then repeated until the  simulated yields for cocoa were reasonably close to the observed yield.
 
-In the SIMPLE model dummy files are provided for adding new crop data and weather data, and files 2 to 6 in the list below can be edited to define new cultivars or experiments etc. Then modifying the simulation management file will cause the new files to be read when the program is run.
+A zip file of the R codes and input files for the SIMPLE model was kindly provided by Dr Chuang Zhao of the Agricultural and Biological Engineering Department, University of Florida. The main directory contains R codes, the \emph{“Parameter definition”} Excel ® file, where the units required in each input file for the model are described, instructions and directories containing other input files. Examples of all input files are provided in the Zip files together with a range of data sets that can be used to check model operation after installation. Before running the SimpleB.R program initially line 72 was edited, with RStudio, to provide the full path for the installation. Also, the single year/single experiment mode was selected by setting the Grid-simulation switch in line 58 to “off” by entering [1] at the end of line 58. After checking the first column in the Input/Simulation Management.csv file is all zeros apart from 1 on line alongside cocoa experiment, then the model was run.
+
+In the SIMPLE model dummy files are provided for adding new cocoa crop data and weather data, and files 2 to 6 in the list below can be edited to define new cultivars or experiments. Then modifying the simulation management file will cause the new files to be read when the program is run.
 \begin{enumerate}
 	\item Input/Simulation Management.csv
 	\item Input/Species parameter.csv
@@ -180,13 +188,71 @@ In the SIMPLE model dummy files are provided for adding new crop data and weathe
     \item Weather/dummy weather.WTH
 \end{enumerate}
 
-\subsection{Applying the SIMPLE model for the Colombia cocoa crop }
+The first step was add the new experiment for cocoa in the dummy crop and experiment names were replaced with our crop and treatment names in the input files and flowering date was changed. Thermal time values required for Input/Cultivar.csv  had to be defined for ICS 95 and CCN51 cultivars using field data from Fedecacao plot reports in Santander and Caldas, Colombia.  Thus, the date for harvest is predicted when the model calculations reach the thermal time  for  each specific cultivar ICS 95 and CCN51. The new experiment name “KOKOlatl” for was used in the species parameter file with the respective values of parameters for cocoa including irrigation, soil features and radiation use efficiency \citep{zuidema2005} \textcolor{red}{add table parameters values will change through the calibration}. 
 
-In outline the procedure used was a sequential process of modifying or adding the appropriate files, changing the parameters in the simulation management file, running the program and inspecting the results. This cycle was then repeated until the dry matter yields for Colombia were reasonably reproduced in the results. 
-The first step was add the new experiment for cocoa in the dummy crop and experiment names were replaced with our crop and treatment names in the input files and flowering and harvest dates were changed to harvest at 6 months after flowering to check that our modifications could be read. Initially, the new experiment name “KOKOlatl” for the cultivar ICS 95 was used in the species parameter file with other parameters and data founded in papers \textcolor{red}{debo completar eso con la bibliografia de donde saque datos de fisio}, including irrigation, soil features and radiation use efficiency. An appropriate treatment label was added (Figure 7), but all other options pointed to the test data from Brazil.  
 
-\subsection{Input data acquisition } 
-Input Weather data were sourced from the POWER Data Access Viewer \citep{nasapower}, which allows automatic download. These were used in as inputs for SIMPLE model. Weather data had to be transformed to .WHT file.
+\begin{table}[h!]	
+\caption {\footnotesize {Cocoa crop parameter values used in Species-parameterfile.}} \label{tab:Speparams} 
+	\centering
+	\begin{small}
+		\begin{tabular}{{c c c c c c c c c }}
+			\hline
+			{\bf Tbase }& {\bf Topt } & {\bf RUE} & {\bf I50maxH}& {\bf I50maxW}& {\bf MaxT}& {\bf ExtremeT} & {\bf CO2-RUE}& {\bf S-water}\\
+			\hline
+			105& 26 & 0.8 & 100 & 5& 35&45&0.09&1.5 \\
+			\hline
+		\end{tabular}  
+	\end{small}
+\end{table}
+
+
+\begin{table}[h!]	
+	\caption {\footnotesize {Cocoa crop parameter values used in Cultivar file.}} \label{tab:Culparam} 
+	\centering
+	\begin{small}
+		\begin{tabular}{{c c c c c}}
+			\hline
+			{\bf Cultivar }& {\bf Tsum } & {\bf HI} & {\bf I50A}& {\bf I50B}\\
+			\hline
+			ICS 95& 3300 & 0.4 & 680 & 200 \\
+			CCN51  & 3600 & 0.4 & 680 & 200 \\
+			\hline
+		\end{tabular}  
+	\end{small}
+\end{table}
+
+
+\begin{table}[h!]	
+	\caption {\footnotesize {Cocoa crop parameter values used in Treatment and Observation file.}} \label{tab:Treaparam} 
+	\centering
+	\begin{small}
+		\begin{tabular}{{c c }}
+			\hline
+			{\bf Variable name }&{\bf Value}\\
+			\hline
+			Exp&KOKOlatl\\
+			Label& Colombia\\
+			Weather & KOKOS (.WTH file name)\\
+			CO2 & 400\\
+			SowingDate &flowering date\\
+			SoilName & Loamy sand4\\
+			Cultivar& ICS 95 or CCN51\\
+			MaxIntercept& 0.95\\
+			InitialBio & 1\\
+			InitialTT & 0\\
+			InitialFsolar & 0.01 \\
+			LAI & 2 \\
+			\hline
+		\end{tabular}  
+	\end{small}
+\end{table}
+
+
+
+\subsection{Evaluation of model performance}
+
+The SIMPLE model performance was evaluated by comparing simulated values cocoa yield with those reported by Fedecacao from cocoa plantations, using statistical indices of relative-RMSE (RRMSE) \citep{Zao2019simple} and coefficient of determination (R$^{2}$) \citep{Zao2019simple, Bai2020, Camargo2019aquacropr}. The harvest date predicted was supported by \textcolor{red}{Adriana results}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -196,6 +262,14 @@ Input Weather data were sourced from the POWER Data Access Viewer \citep{nasapow
 	\caption{\footnotesize {SIMPLE model output for cocoa in Colombia }} 
 	\includegraphics[scale=0.4]{images/averageS.png}\\
 	\label{fig:weather}
+\end{figure}
+
+Studying the weather data effects over the flowering date and their final yield. We found that the number of successful flowers pollinated to produce final yield can be affected mostly by the rain, TMAX and wind (Figure \ref{fig:correlation}). The later can affect the availability of tiny flies pollinators from Diptera order and from the families of of the biting midges \textit{Ceratopogonidae},  genus  \textit{Forcipomyia} \citep{Saunders1959, kaufmann1975, sotomayor2020} to reach the cocoa flowers. However, wind is not included in the SIMPLE model as an input as cocoa crop has not been simulated with this model before. Flower opening is very well synchronised between the cohorts of mature flowers opening each night. The flowers open at almost exactly the same time and rate, irrespective of their position on the trunk. Unfertilised flowers abscise from the trunk approximately 1 day after flower opening  \citep{Niemenak2010}. 
+\begin{figure}[h]
+	\centering
+	\caption{\footnotesize {Phenology of cocoa in Colombia for crop modelling\\}} 
+	\includegraphics[scale=0.7]{images/correlation.png}\\
+	\label{fig:correlation}
 \end{figure}.
 
 \begin{figure}[h]
@@ -209,8 +283,11 @@ Input Weather data were sourced from the POWER Data Access Viewer \citep{nasapow
 \section{Discussion}
 
 Authors should discuss the results and how they can be interpreted from the perspective of previous studies and of the working hypotheses. The findings and their implications should be discussed in the broadest context possible. Future research directions may also be highlighted.
+\textcolor{red}{this section on going to organize}
 
 Evaluating the level of knowledge of producers regarding cocoa crop management, the harvest was in the group of activities that presented the lowest level of knowledge on the part of the producers according to the general averages \citep{Gutierrez2020}. 
+
+  
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusions}
