@@ -359,6 +359,7 @@ ARIDFunction<-function(weather,soil,Lat,Elev)
   dat<-data.frame(SRAD=dat$SRAD,TMAX=dat$TMAX,TMIN=dat$TMIN,DEWPOINT=dat$TMIN,RAIN=dat$RAIN,
                   WINDSPEED=rep(1,nrow(dat)),DOY=as.numeric(substring(dat$DATE,3,5)),YEAR=as.numeric(format(dat$IDATE,"%Y")));
   
+ 
   rain <- dat[,5]                                                   # The 5th column of the data is PRECIPITATION
   
   ######## 3. set up Constants for ARID
@@ -402,7 +403,7 @@ ARIDFunction<-function(weather,soil,Lat,Elev)
     SD <- 0.409*sin(2*pi*dat[i,7]/days-1.39)
     SSA <- acos(-tan(lat)*tan(SD))
     extra <- 24*60*0.082/pi*IRDES*(SSA*sin(lat)*sin(SD)+cos(lat)*cos(SD)*sin(SSA))
-    CSR <- (0.75+2*10^-5*elevation)*extra
+    CSR <- (0.75+2*10^-5*elevation)*extra  # (Eq. 37 FAO )
     RRAD <- dat[i,1]/CSR
     ea <- 0.6108*exp(17.27*dat[i,4]/(dat[i,4]+237.3))
     LWR <- 4.903*10^-9*((dat[i,2]+273.16)^4+(dat[i,3]+273.16)^4)/2*(0.34-0.14*sqrt(ea))*(1.35*RRAD-0.35)
