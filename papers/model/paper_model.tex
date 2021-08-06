@@ -4,6 +4,16 @@
 %=================================================================
 \documentclass[gene,journal,article,submit,moreauthors,pdftex]{Definitions/mdpi} 
 \usepackage{natbib}
+\usepackage[colorinlistoftodos]{todonotes}
+\newcounter{mycomment}
+\newcommand{\mycomment}[2][]{%
+% initials of the author (optional) + note in the margin
+\refstepcounter{mycomment}%
+{%
+\setstretch{0.7}% spacing
+\todo[color={red!100!green!33},size=\small]{%
+\textbf{Comment [\uppercase{#1}\themycomment]:}~#2}%
+}}
 % For posting an early version of this manuscript as a preprint, you may use "preprints" as the journal and change "submit" to "accept". The document class line would be, e.g., \documentclass[preprints,article,accept,moreauthors,pdftex]{mdpi}. This is especially recommended for submission to arXiv, where line numbers should be removed before posting. For preprints.org, the editorial staff will make this change immediately prior to posting.
 
 %--------------------
@@ -174,9 +184,7 @@ Input variables required to run SIMPLE model for cocoa include the flowering dat
 
 The procedure for the model calibration used was a sequential process of modifying or adding the appropriate files, changing the parameters in the simulation management file, running the program and inspecting the results. This cycle was then repeated until the  simulated yields for cocoa were reasonably close to the observed yield.
 
-A zip file of the R codes and input files for the SIMPLE model was kindly provided by Dr Chuang Zhao of the Agricultural and Biological Engineering Department, University of Florida. The main directory contains R codes, the \emph{“Parameter definition”} Excel ® file, where the units required in each input file for the model are described, instructions and directories containing other input files. Examples of all input files are provided in the Zip files together with a range of data sets that can be used to check model operation after installation. Before running the SimpleB.R program initially line 72 was edited, with RStudio, to provide the full path for the installation. Also, the single year/single experiment mode was selected by setting the Grid-simulation switch in line 58 to “off” by entering [1] at the end of line 58. After checking the first column in the Input/Simulation Management.csv file is all zeros apart from 1 on line alongside cocoa experiment, then the model was run.
-
-In the SIMPLE model dummy files are provided for adding new cocoa crop data and weather data, and files 2 to 6 in the list below can be edited to define new cultivars or experiments. Then modifying the simulation management file will cause the new files to be read when the program is run.
+A zip file of the R codes and input files for the SIMPLE model was kindly provided by Dr Chuang Zhao of the Agricultural and Biological Engineering Department, University of Florida. The main directory contains R codes, the \emph{“Parameter definition”} Excel ® file, where the units required in each input file for the model are described, instructions and directories containing other input files. Examples of all input files are provided in the Zip files together with a range of data sets that can be used to check model operation after installation. Before running the SimpleB.R program initially line 72 was edited, with RStudio, to provide the full path for the installation. Also, the single year/single experiment mode was selected by setting the Grid-simulation switch in line 58 to “off” by entering [1] at the end of line 58. After checking the first column in the Input/Simulation Management.csv file is all zeros apart from 1 on line alongside cocoa experiment, then the model was run. In the SIMPLE model dummy files are provided for adding new cocoa crop data and weather data, and files 2 to 6 in the list below can be edited to define new cultivars or experiments. Then modifying the simulation management file will cause the new files to be read when the program is run. \todo[inline, color=green!40, size=\small]{AVCR. Todo este parrafo sobra, pon una referencia al articulo original. Tienes que verificar que la autora te permite utilizar el script. }
 \begin{enumerate}
 	\item Input/Simulation Management.csv
 	\item Input/Species parameter.csv
