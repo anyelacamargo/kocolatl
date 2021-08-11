@@ -1,11 +1,13 @@
+### Script to transform weather data from NASA POWER to WTH files
+### for SIMPLE model
 #' Anyela V Camargo R anyelavcamargo@gmail.com
-
+#' Update by Angela Romero V ---2021-08-11
 library(ggplot2)
 library(dplyr)
 library(tidyr)
-#source('../aquacropr/R/Aqua_library.R')
-#change ARV
 
+# copia el directotrio de la carpeta que contiene este codigo
+# el la dirección usar / y no \
 my_path <- "C:/Users/Angelita/Documents/R/Cacao"
 setwd(my_path)
 
@@ -35,11 +37,9 @@ transform_weather <- function(fname_in, fname_out){
 }
 
 fname_in <- 'weather_filter'
-fname_out <- 'dummy_weather.WTH'
+fname_out <- 'KOKOS_weather.WTH'
 transform_weather(fname_in, fname_out)
 #-------------------------
-
-  
   
   
   
