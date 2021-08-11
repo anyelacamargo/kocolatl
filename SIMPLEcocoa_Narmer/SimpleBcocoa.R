@@ -3,7 +3,9 @@
 #######  By Bing Liu, ABE, University of Florida ------  2017-04-27                       
 #######  Updated by Liujun Xiao,ABE, University of Florida ------  2017-06-08           
 #  Adding PET function by Kwang Soo Kim, Seoul National University ---2017-06-08 
-#######  Recoding by Liujun Xiao,ABE, University of Florida ------ 2018-03-09         
+#######  Recoding by Liujun Xiao,ABE, University of Florida ------ 2018-03-09 
+#######  KOKOlatm Lanitoamenrican cocoa to predict the optimal harvest time 
+#Updated by Angela Romero Vergel,NIAB,Cocoa project ------  2021-08-11 
 ##################################################################
 
 ##############################################################
