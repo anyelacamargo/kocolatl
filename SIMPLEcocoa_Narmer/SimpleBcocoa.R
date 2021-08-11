@@ -71,9 +71,9 @@ library(plyr)
 library(parallel)
 if(dev.cur()>1){replicate(dev.cur()-1,dev.off())} 
 setwd(script.dir <- dirname(sys.frame(1)$ofile))# Relative working directory
-#cambiar la direccion donde esta la carpeta SIMPLE20181102
+#cambiar la direccion donde esta la carpeta SIMPLEcoca
 #tener en cuenta el sentido del /  en la direccion
-setwd("C:/Users/Angelita/Desktop/SIMPLE20181102")##Absolute working directory
+setwd("C:/Users/Angelita/Desktop/SIMPLEcocoa")##Absolute working directory
 source("Mainfunction.R")
 
 ######weather directory for regional simulation###
@@ -99,6 +99,7 @@ DailyOutputOutput=c("Crop","Exp","Label","Trt","Day","DATE","Tmax","Tmin","Radia
 
 ############  Model starts here  ###########################
 ############  Read inputs - treatments, soil weather, CO2
+### relative locations 
 if(GridsimulationSwitch=='OFF'){
   management<-read.table("./Input/Simulation Management.csv",header=TRUE,sep=","
                          ,stringsAsFactors=FALSE)
