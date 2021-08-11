@@ -42,7 +42,7 @@
 #######
 #######   6. Add obs data
 #######     copy: @TRNO	DATE	UYAD	LAID
-#######     Extend to: TRNO	DATE	DAP	GWAD	LAID	fSolar	CWAD    ###### DAP=day fater planting=DATE-sowing_date
+#######     Extend to: TRNO	DATE	DAP	GWAD	LAID	fSolar CWAD###### DAP=day fater planting=DATE-sowing_date
 #######     GWAD=yield
 #######     CWAD=total above ground + yield (no roots)    #### must hav at least 1 data/trt
 #######     fSolar=1-EXP(-k*LAI)
@@ -50,12 +50,12 @@
 #######     save file as Obs_crop_name_exp_name.csv
 #######
 #######
-####################################################################################################
-####################################################################################################
+##################################################################
+##################################################################
 
 #################  load R packages --- needs to stay here 
 rm(list=ls())   #### cleans memory - needs to saty here
-###########load packages######################################################################
+###########load packages#########################################
 list.of.packages <- c("ggplot2", "plyr","parallel")
 new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,
                 "Package"])]
@@ -65,22 +65,22 @@ library(ggplot2)
 library(plyr)
 library(parallel)
 if(dev.cur()>1){replicate(dev.cur()-1,dev.off())} 
-setwd(script.dir <- dirname(sys.frame(1)$ofile)) #### Relative working directory
+setwd(script.dir <- dirname(sys.frame(1)$ofile))# Relative working directory
 #cambiar la direccion donde esta la carpeta SIMPLE20181102
 #tener en cuenta el sentido del /  en la direccion
-setwd("C:/Users/Angelita/Desktop/SIMPLE20181102")  ########Absolute working directory
+setwd("C:/Users/Angelita/Desktop/SIMPLE20181102")##Absolute working directory
 source("Mainfunction.R")
 
 ######weather directory for regional simulation###
 WeatherDir="./Gridcell Weather/historical/"
 
-######weather type option########################
+######weather type option################
 WeatherType=c("WTH","CSV","Rdata")[1]
 
 #########Intput map##########################
 #MapExtention=c("World","United States of America","China","Canada","Brazil","...")[2]
 #SimulatingYear=c(2001)
-############  Gridcell Simulation Switch  #############################
+############  Gridcell Simulation Switch  ######################
 GridsimulationSwitch=c('OFF','ON')[1]  
 ########1=single point simulation, 2= Grid cell simulation
 
