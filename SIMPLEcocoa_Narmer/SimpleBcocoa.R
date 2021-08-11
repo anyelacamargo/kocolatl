@@ -4,6 +4,8 @@
 #######  Updated by Liujun Xiao,ABE, University of Florida ------  2017-06-08             ##########
 #######  Adding PET function by Kwang Soo Kim, Seoul National University ------2017-06-08  ##########
 #######  Recoding by Liujun Xiao,ABE, University of Florida ------ 2018-03-09             ##########
+####   cocoa Latinoamerica project: Predict harvest time
+#######  Updated by Angela Romero Vergel,NIAB, Colombian cocoa project ------ 2021-08-11  ##########
 ####################################################################################################
 
 ####################################################################################################
@@ -53,11 +55,6 @@
 
 #################  load R packages --- needs to stay here 
 rm(list=ls())   #### cleans memory - needs to saty here
-############  Gridcell Simulation Switch  ##########################################################
-GridsimulationSwitch=c('OFF','ON')[1]  
-########1=single point simulation, 2= Grid cell simulation
-
-
 ###########load packages######################################################################
 list.of.packages <- c("ggplot2", "plyr","parallel")
 new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,
@@ -73,6 +70,7 @@ setwd(script.dir <- dirname(sys.frame(1)$ofile)) #### Relative working directory
 #tener en cuenta el sentido del /  en la direccion
 setwd("C:/Users/Angelita/Desktop/SIMPLE20181102")  ########Absolute working directory
 source("Mainfunction.R")
+
 ######weather directory for regional simulation###
 WeatherDir="./Gridcell Weather/historical/"
 
@@ -82,6 +80,9 @@ WeatherType=c("WTH","CSV","Rdata")[1]
 #########Intput map##########################
 #MapExtention=c("World","United States of America","China","Canada","Brazil","...")[2]
 #SimulatingYear=c(2001)
+############  Gridcell Simulation Switch  #############################
+GridsimulationSwitch=c('OFF','ON')[1]  
+########1=single point simulation, 2= Grid cell simulation
 
 ########## Output option################
 DailyOutputforgridcell=c('OFF','ON')[2]
@@ -91,7 +92,7 @@ DailyOutputOutput=c("Crop","Exp","Label","Trt","Day","DATE","Tmax","Tmin","Radia
 #MapoutputYear=2001
 
 
-############  Model starts here  ##################################################################
+############  Model starts here  ###########################
 ############  Read inputs - treatments, soil weather, CO2
 if(GridsimulationSwitch=='OFF'){
   management<-read.table("./Input/Simulation Management.csv",header=TRUE,sep=","
