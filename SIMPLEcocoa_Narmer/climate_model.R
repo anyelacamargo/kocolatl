@@ -1,13 +1,14 @@
 ### Script to transform weather data from NASA POWER to WTH files
 ### for SIMPLE model
 #' Anyela V Camargo R anyelavcamargo@gmail.com
-#' Update by Angela Romero V ---2021-08-11
+#' Update by Angela Romero V ---2021-08-12
+#Add header to WTH file
 library(ggplot2)
 library(dplyr)
 library(tidyr)
+#source('../aquacropr/R/Aqua_library.R')
+#change ARV
 
-# copia el directotrio de la carpeta que contiene este codigo
-# el la dirección usar / y no \
 my_path <- "C:/Users/Angelita/Documents/R/Cacao"
 setwd(my_path)
 
@@ -28,19 +29,22 @@ transform_weather <- function(fname_in, fname_out){
                                      TMAX = weather_raw[['T2M_MAX']],
                                      TMIN = weather_raw[['T2M_MIN']],
                                      RAIN = weather_raw[['PRECTOT']]))
-  
+  # # four lines of text above head line must be added to be readed in SIMPLE model
+  dfraw <- read.csv(fname_in,  header = FALSE)
+  line1 <- dfraw[2:5,0:5]
+  line2 <-colnames( weather_filter)
+  line2<- as.data.frame(t(line2))
+  line1 <- rbind(line1, line2)
+  x <-unname(weather_filter)
+  xx=colnames( line1)
+  colnames(x) <- c(xx)
+  weather_file <- rbind(line1, x)
  
-  
- write.table(weather_filter, file = fname_out, sep='  ',
-              quote = FALSE, row.names = FALSE)
-  
+   write.table(weather_file, file = fname_out, sep=' ',
+              quote = FALSE, row.names = FALSE, col.names = FALSE)
+
 }
 
-fname_in <- 'weather_filter'
-fname_out <- 'KOKOS_weather.WTH'
+fname_in <- 'weather_file'
+fname_out <- 'Andummy_weather.WTH'
 transform_weather(fname_in, fname_out)
-#-------------------------
-  
-  
-  
- 
