@@ -1,4 +1,4 @@
-%  LaTeX support: latex@mdpi.com 
+%  %  LaTeX support: latex@mdpi.com 
 %  For support, please attach all files needed for compiling as well as the log file, and specify your operating system, LaTeX version, and LaTeX editor.
 
 %=================================================================
@@ -155,7 +155,7 @@ $^{2}$ \quad BIOS 2; e-mail@e-mail.com}
 
 Cocoa ( \textit{Theobroma cacao }L. ) is an important worldwide perennial tropical crop endemic to the South American rainforests \citep{zuidema2005, motamayor2002, argout2011, Rodriguez2019}. Cacao plant member of the Malvaceae (formerly Sterculiaceae)  botanical family such as  cotton \textit{ Gossypium hirstium} \citep{Nix2017cotton} wich is modeled in SIMPLE model \citep{Zao2019simple}. Cocoa is grown for its fruits, known as cacao pods.  \citep{ Niemenak2010, suarez2021}. Only the 5\% of the world cocoa yield is desalinated for Fine-cocoa production due to the low productivity of  the traditional crop management \citep{argout2011}.  In Colombia, cocoa  is  traditionally  consumed  as  a  beverage. It is one of the crops promoted by the Colombian government in the social and agricultural development  programs aimed at favouring peace in post-conflict regions \citep{Rodriguez2019, Abbott2019} as cocoa is grown by approximately 52.000 \citep{Gutierrez2020} and 98\% of production being carried out by small and medium-sized producers \citep{Garcia2014, Escobar2020}. Colombia registered an increase of 3.750 tons in production in 2020 compared to the previous year \citep{lamos2020}. 
 
-Although Colombian cocoa has the potential to be in the high value markets for fine flavour \citep{Escobar2020}. It is still not widely produced as the lack of adoptions of technologies by the traditional farmers. They empirically harvest after 5 or 6 months after flowering date, hence they ferment cocoa beans without considering the  quality of the seeds at the harvest time. This produce heterogeneous characteristics between each fermentation batch diminishing the quality of cocoa final product \citep{Escobar2021}. To identify the best moment to harvest is important to consider physiological responses affected by climate variables such as rain, solar radiation and wind.  Thus,  for cocoa in Colombia, physiological simulation models may be valuable to identify the best moment to harvest cocoa considering variable weather conditions, soil types and cultivar specifications. 
+Although Colombian cocoa has the potential to be in the high value markets for fine flavour \citep{Escobar2020}, it is still not widely produced as the lack of adoptions of technologies by the traditional farmers. They empirically harvest after 5 or 6 months after flowering date, hence they ferment cocoa beans without considering the  quality of the seeds at the harvest time. This produce heterogeneous characteristics between each fermentation batch diminishing the quality of cocoa final product \citep{Escobar2021}. To identify the best moment to harvest is important to consider physiological responses affected by climate variables such as rain, solar radiation and wind.  Thus,  for cocoa in Colombia, physiological simulation models may be valuable to identify the best moment to harvest cocoa considering variable weather conditions, soil types and cultivar specifications. 
 
 Crop models represent a quantitative assumption of plant growth depending on sunlight interception efficiency values and climate data supported by a large amount of empirical and ground data. \citep{Reynolds2018}. Physiological crop models have shown to be very useful tool for provided agronomical advices and improvements of the cropping systems of annual crops mainly. Recently crop modelling studies are focusing on  perennial crops  production \citep{zuidema2005, Zao2019simple, Bai2020, Romero2021}. However, the information reported  is be less than for annual crops due to the lack of field data available , relatively high research costs and the difficulties of accumulated errors in long-term simulations \citep{zuidema2005}. For cacao there  approaches  to predict yield mainly  using algorithms of machine learning \citep{lamos2020} and just one mechanistic model simulates physiological cocoa performance  "SUCROS-cocoa" \citep{zuidema2005}. This crop model calculates light interception, photosynthesis, maintenance respiration,
 evapotranspiration, biomass production and cocoa yield. It can be parametrised having data on cocoa physiology and morphology \citep{zuidema2005}. However,  there is not specific cocoa physiology data available from small and medium-sized producers. Thus, we adapted the simple generic crop model (SIMPLE) that could be easily modified for any crop to simulate development, crop growth and yield using few parameters such as weather and cultivar specification \citep{Zao2019simple}.
@@ -165,26 +165,68 @@ In this paper, we present a physiological parametrization of SIMPLE crop model f
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Materials and Methods}
 \subsection{Floral Phenology of Cocoa }
-In the SIMPLE model we simulate the floral phenology from the date of inflorescence emergence (BBCH scale 5) to predict the date of ripening of fruit and seed (BBCH 8) \citep{Niemenak2010} (See figure \ref{fig:pheno}). For modelling purposes the crop cycle of cocoa as perennial plant does not start at the plantation date such as annual crops where usually the planting date as start point of the crop cycle to model. The growth period of the fruit can varied from  110 to 150  daa (days after anthesis) \citep{lopez2018} when cacao fruits reaches the physiological maturity, but if can be harvested at 170 days daa \citep{Niemenak2010}. 
+Normally the phenological stages in cocoa are  divided in two main phases: vegetative and reproductive. In the SIMPLE model we simulate reproductive phase described by the floral phenology from the date of inflorescence emergence (BBCH scale 5) to predict the date of ripening of fruit and seed (BBCH 8) \citep{Niemenak2010} (See figure \ref{fig:pheno}). In the Andean region the reproductive phase is cyclically fulfilled during two annual cycles passing by the following phases: inflorescence emergence, flowering, pollination, fruit development and harvest. Therefore, for modelling parametrization the crop cycle of cocoa as perennial plant does not start at the plantation date such as annual crops systems. Instead  the start point of the cocoa crop cycle to model is the inflorescence emergence date. Consequently , the growth period of the fruit can varied from  110 to 150  daa (days after anthesis) \citep{lopez2018} when cacao fruits reaches the physiological maturity, but it can be harvested at 170 days daa \citep{Niemenak2010} for quality purposes.
 
+Cocoa is a cauliflorous plant, which means that flowers grow on the trunk and branches. In Colombia cocoa trees usually produce flowers throughout the year, however the biggest flowering occurs in September and January to harvest in March and July (Fig.\ref{fig:yield}). Cocoa trees produces with up to 10000 flowers per tree each year. which the 50 \%  do not develop into ripe fruits according to Fedecacao reports. The flower takes 30 days passing by 12 micro-stages from meristem development (stages 1–6) to the fully developed flower(Stages 7–12) \citep{swanson2005} when it is ready to be pollinated. 2005). The opening of flowers or anthesis  occurs over a 12-hour period during the night and it is synchronised between the groups of mature flowers \citep{Niemenak2010}. However, the live of a flower can last approximately 1 day after the opening falling form the trunk if it is unfertilised \citep{cheesman1927, Niemenak2010}.
+
+Subsequentially, after anthesis the fruit growths by approximately 150 days until the maturation, mucilage. Therefore, the complete maturation process of the fruit, from the pollination to fully mature fruit, takes 160–210 days \cite{berry1994}. The accumulation of lipids, storage proteins and anthocyanin starts about 85 days after pollination when fruits have an active metabolism and seeds   moisture content decreases up to 30\% \cite{Lehrian1980, Niemenak2010}. During this phase the quality of cocoa seeds is defined.\\
  
-\begin{figure}[h]
+ 
+\begin{figure}[h!]
 	\centering
 	\caption{\footnotesize {Phenology of cocoa in Colombia for crop modelling\\}} 
-	\includegraphics[scale=0.5]{images/phenology.png}\\
-	\footnotesize{Credits: Taken from phys.org \citep{toledo2021} and \cite{lopez2018}}
+	\includegraphics[scale=0.3]{images/phenology.png}\\
+	\footnotesize{Credits: Taken from from Dreamstime.com, phys.org \citep{toledo2021} and \cite{lopez2018}}
 	\label{fig:pheno}
+\end{figure}
+
+
+\begin{figure}[h]
+	\centering
+	\caption{\footnotesize {Thermal time characterization of cocoa for four locations\\}}
+	\includegraphics[scale=0.35]{images/yieldmonth.png}
+	\label{fig:yield}
+\end{figure}
+\newpage
+
+
+\subsection{Test Site}
+Cocoa field are located in Saravena (Arauca), Rionegro (Santander), Cali (Valle del Cauca), Apartado (Antioquia) and Manizalez (Caldas). We considered 112 parcels data from Fedecacao reports.Each parcel data contained age of crop, density of planting, yield, number of fruits harvested, flowering date, harvest date. 
+
+\subsection{Climatological Conditions}
+The temperature ranges from 16 to 28 $^\circ$C and it is relatively constant during the year. Saravena presented the maximum variability with hotter months during the first half of the year.  Apartado was found as the hottest with 26 $^\circ$C and Caldas as the coolest site with 18 $^\circ$C compared with other regions tested. Cali and Santander have similar temperature but contrasting PAR conditions. Santander and Caldas have the biggest variability and the maximum of solar radiation values over 20 MJ m$^{2}$day$^{-1}$. In contrast , Cali and Saravena presented the lowest values of PAR below 5 MJ m$^{2}$day$^{-1}$. (Fig.\ref{fig:temp})
+
+Precipitation in Colombia is presented in two seasons per year from February to April and from October to November (Fig.\ref{fig:rain}). While the relative humidity 
+
+\begin{figure}[h!]
+	\centering
+	\caption{\footnotesize {Daily average temperature and available photosynthetic solar radiation (PAR) conditions. \\}}
+	\includegraphics[scale=0.25]{images/tempe.png}
+	\includegraphics[scale=0.25]{images/SRAD.png}
+	\label{fig:temp}
+\end{figure}
+
+
+\begin{figure}[h!]
+	\centering
+	\caption{\footnotesize {Precipitation and relative humidity per month in Colombia \\}}
+	\includegraphics[scale=0.4]{images/rainmonth.png}
+	\label{fig:rain}
 \end{figure}
 \newpage
 
 \subsection{Input data acquisition for SIMPLE crop model calibration}
-Input variables required to run SIMPLE model for cocoa include the flowering date and daily weather of solar radiation (SRAD), maximum and minimum temperature (TMAX, TMIN) and rain. Weather data as csv file was  downloaded from the POWER Data Access Viewer \citep{nasapower} from January 01 2018 to December 31 2020. The csv file had to be transformed to .WHT file using R 1.4 version \citep{Rstudio2020}. 
+Input variables required to run SIMPLE model for cocoa include the flowering date and daily weather of solar radiation (SRAD), maximum and minimum temperature (TMAX, TMIN) and rain. Weather data as csv file was  downloaded from the POWER Data Access Viewer \citep{nasapower} from January 01 2018 to December 31 2020 for four locations in Colombia (Cali, Rionegro -Santander, Apartado - Antioquia, Saravena Arauca). The csv file had to be transformed to .WHT file using R 1.4 version \citep{Rstudio2020}. 
+
+
+
+
 
 \subsection{SIMPLE crop model calibration}
 
-The procedure for the model calibration used was a sequential process of modifying or adding the appropriate files, changing the parameters in the simulation management file, running the program and inspecting the results. This cycle was then repeated until the  simulated yields for cocoa were reasonably close to the observed yield.
+The procedure for the SIMPLE model \citep{Zao2019simple}calibration used was a sequential process of modifying or adding the appropriate files, changing the parameters in the simulation management file, running the program and inspecting the results. This cycle was then repeated until the  simulated yields for cocoa were reasonably close to the observed yield. 
 
-A zip file of the R codes and input files for the SIMPLE model was kindly provided by Dr Chuang Zhao of the Agricultural and Biological Engineering Department, University of Florida. The main directory contains R codes, the \emph{“Parameter definition”} Excel ® file, where the units required in each input file for the model are described, instructions and directories containing other input files. Examples of all input files are provided in the Zip files together with a range of data sets that can be used to check model operation after installation. Before running the SimpleB.R program initially line 72 was edited, with RStudio, to provide the full path for the installation. Also, the single year/single experiment mode was selected by setting the Grid-simulation switch in line 58 to “off” by entering [1] at the end of line 58. After checking the first column in the Input/Simulation Management.csv file is all zeros apart from 1 on line alongside cocoa experiment, then the model was run. In the SIMPLE model dummy files are provided for adding new cocoa crop data and weather data, and files 2 to 6 in the list below can be edited to define new cultivars or experiments. Then modifying the simulation management file will cause the new files to be read when the program is run. \todo[inline, color=green!40, size=\small]{AVCR. Todo este parrafo sobra, pon una referencia al articulo original. Tienes que verificar que la autora te permite utilizar el script. }
+In the SIMPLE model dummy files are provided for adding new cocoa crop data and weather data, and files 2 to 6 in the list below can be edited to define new cultivars or experiments. Then modifying the simulation management file will cause the new files to be read when the program is run.
 \begin{enumerate}
 	\item Input/Simulation Management.csv
 	\item Input/Species parameter.csv
@@ -207,7 +249,7 @@ The first step was add the new experiment for cocoa in the dummy crop and experi
 			\hline
 			{\bf Tbase }& {\bf Topt } & {\bf RUE} & {\bf I50maxH}& {\bf I50maxW}& {\bf MaxT}& {\bf ExtremeT} & {\bf CO2-RUE}& {\bf S-water}\\
 			\hline
-			105& 26 & 0.8 & 100 & 5& 35&45&0.09&1.5 \\
+			10& 26 & 0.8 & 100 & 5& 35&45&0.09&1.5 \\
 			\hline
 		\end{tabular}  
 	\end{small}
@@ -215,14 +257,15 @@ The first step was add the new experiment for cocoa in the dummy crop and experi
 
 
 \begin{table}[h!]	
-	\caption {\footnotesize {Cocoa crop parameter values used in Cultivar file.}} \label{tab:Culparam} 
+\caption {\footnotesize {Cocoa crop parameter values used in Cultivar file.}}
+\label{tab:Culparam} 
 	\centering
 	\begin{small}
-		\begin{tabular}{{c c c c c}}
+		\begin{tabular}{c c c c c}
 			\hline
-			{\bf Cultivar }& {\bf Tsum } & {\bf HI} & {\bf I50A}& {\bf I50B}\\
+			{\bf Cultivar }&{\bf Tsum }&{\bf HI}&{\bf I50A}&{\bf I50B}\\
 			\hline
-			ICS 95& 3300 & 0.4 & 680 & 200 \\
+			ICS 95 & 3300 & 0.4 & 680 & 200 \\
 			CCN51  & 3600 & 0.4 & 680 & 200 \\
 			\hline
 		\end{tabular}  
@@ -260,30 +303,41 @@ The first step was add the new experiment for cocoa in the dummy crop and experi
 \subsection{Evaluation of model performance}
 
 The SIMPLE model performance was evaluated by comparing simulated values cocoa yield with those reported by Fedecacao from cocoa plantations, using statistical indices of relative-RMSE (RRMSE) \citep{Zao2019simple} and coefficient of determination (R$^{2}$) \citep{Zao2019simple, Bai2020, Camargo2019aquacropr}. The harvest date predicted was supported by \textcolor{red}{Adriana results}
+Yield reports from 20190 to 2020  were shared by Federación Nacional de Cacaoteros - Fedecacao. 
 
-
+\subsection{Outputs}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
 \begin{figure}[h]
 	\centering
-	\caption{\footnotesize {SIMPLE model output for cocoa in Colombia }} 
+	\caption{\footnotesize {Weather variables during flowering times}} 
 	\includegraphics[scale=0.4]{images/averageS.png}\\
 	\label{fig:weather}
 \end{figure}
 
 Studying the weather data effects over the flowering date and their final yield. We found that the number of successful flowers pollinated to produce final yield can be affected mostly by the rain, TMAX and wind (Figure \ref{fig:correlation}). The later can affect the availability of tiny flies pollinators from Diptera order and from the families of of the biting midges \textit{Ceratopogonidae},  genus  \textit{Forcipomyia} \citep{Saunders1959, kaufmann1975, sotomayor2020} to reach the cocoa flowers. However, wind is not included in the SIMPLE model as an input as cocoa crop has not been simulated with this model before. Flower opening is very well synchronised between the cohorts of mature flowers opening each night. The flowers open at almost exactly the same time and rate, irrespective of their position on the trunk. Unfertilised flowers abscise from the trunk approximately 1 day after flower opening  \citep{Niemenak2010}. 
-\begin{figure}[h]
+\begin{figure}[h!]
 	\centering
-	\caption{\footnotesize {Phenology of cocoa in Colombia for crop modelling\\}} 
+	\caption{\footnotesize {Pearson correlation among weather variables and flowering dates \\}} 
 	\includegraphics[scale=0.7]{images/correlation.png}\\
 	\label{fig:correlation}
 \end{figure}.
 
 \begin{figure}[h]
 	\centering
+	\caption{\footnotesize {Thermal time characterization of cocoa for four locations\\}} 
+	\includegraphics[scale=0.5]{images/ttbbox.png}
+	\label{fig:ttbox}
+\end{figure}.
+\newpage
+
+
+
+\begin{figure}[h!]
+	\centering
 	\caption{\footnotesize {SIMPLE model output for cocoa in Colombia }} 
-	\includegraphics[scale=0.4]{images/outmodel.jpg}\\
+	\includegraphics[scale=0.3]{images/outmodel.png}\\
 	\label{fig:m1}
 \end{figure}.
 
