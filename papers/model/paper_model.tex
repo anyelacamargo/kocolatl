@@ -302,10 +302,18 @@ The first step was add the new experiment for cocoa in the dummy crop and experi
 
 \subsection{Evaluation of model performance}
 
-The SIMPLE model performance was evaluated by comparing simulated values cocoa yield with those reported by Fedecacao from cocoa plantations, using statistical indices of relative-RMSE (RRMSE) \citep{Zao2019simple} and coefficient of determination (R$^{2}$) \citep{Zao2019simple, Bai2020, Camargo2019aquacropr}. The harvest date predicted was supported by \textcolor{red}{Adriana results}
+The SIMPLE model performance was evaluated by comparing simulated values cocoa yield with those reported by Fedecacao from cocoa plantations, using statistical indices of relative-RMSE (RRMSE) (Equ. \ref{equ:RMSE}) \citep{Zao2019simple} and coefficient of determination (R$^{2}$) (Equ. \ref{equ:R2}) \citep{Zao2019simple, Bai2020, Camargo2019aquacropr}. The harvest date predicted was supported by \textcolor{red}{Adriana results}
 Yield reports from 20190 to 2020  were shared by Federación Nacional de Cacaoteros - Fedecacao. 
 
-\subsection{Outputs}
+\begin{equation}
+RMSE= \sqrt{\frac{1}{n}  \sum_{i=1}^{n} (Y_{i}-X_{i})^{2} } 
+\label{equ:RMSE}
+\end{equation}
+
+\begin{equation}
+R^{2}= 1- \frac{\sum_{i=1}^{n} (Y_{i}-X_{i})^{2}}{{\sum_{i=1}^{n}(Y_{i}-0)}^{2}}
+\label{equ:R2}
+\end{equation}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
