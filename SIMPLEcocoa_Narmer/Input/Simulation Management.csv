@@ -1,4 +1,0 @@
-ON_Off,Species*,Exp*,Trt*,Label,Water,NOTE
-0,bananacol,COLena,1,North Colombia,no,Trt1
-0,dummy crop,Exp name,1,Dummy label name,yes,Trt2
-1,cocoa,KOKOlatl,1,Colombia,yes,Trt1

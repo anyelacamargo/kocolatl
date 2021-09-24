@@ -1,3 +1,0 @@
-".id","Crop","Exp","Label","Trt","Day","DATE","Tmax","Tmin","Radiation","TT","fSolar","Biomass","dBiomass","HI","Yield","F_Temp","F_Heat","F_Water","ARID","I50B","I50A","ETO","MaturityDay"
-"Daily","cocoa","KOKOlatl","Caldas Colombia",1,1,2018-12-10,23.27,13.81,18.94,0,0.01,1,0.84513121,0.81,0.81,0.53375,1,1,0,200,680,0,2018-12-12
-"Daily","cocoa","KOKOlatl","Caldas Colombia",1,2,2018-12-11,23.26,14.17,12.45,8.54,0.00115102131543723,1.845,0.0652538896138962,0.81,1.494,0.5446875,1,1,0,200,680,3.91271603382284,2018-12-12
