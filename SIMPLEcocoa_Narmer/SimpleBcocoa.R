@@ -1,62 +1,10 @@
 #########################SIMPLE MODEL v1.1###########################
-##############  20170308-water stress                                         
-#######  By Bing Liu, ABE, University of Florida ------  2017-04-27                       
-#######  Updated by Liujun Xiao,ABE, University of Florida ------  2017-06-08           
-#  Adding PET function by Kwang Soo Kim, Seoul National University ---2017-06-08 
-#######  Recoding by Liujun Xiao,ABE, University of Florida ------ 2018-03-09 
+
 #######  KOKOlatm Lanitoamenrican cocoa to predict the optimal harvest time 
 #Updated by Angela Romero Vergel,NIAB,Cocoa project ------  2021-08-11 
 ##################################################################
 
-##############################################################
-#######		Six Steps for adding a new crop      
-###############
-#######   1. Prepare the model inputs in Treatment.csv 
-#######     Crop,Exp,Trt,weather,lat,Elev,CO2,sowingDate,
-#######	    irrigation=irrigation ID in irrigation table: 
-#must be identical to Trt in irrigation.csv table, if no irri=0
-#######	    AWC=DUL-LL (e.g. from DSSAT soil)
-#######     RCN=runoff number (DSSAT:SLRO)
-#######  	DDC=deep drainage coeff (DSSAT:SLDR)
-####### 	WUC=water uptake coeff (use default=0.096)
-#######  	RZD=root depth in mm)
-#######  	Water=switch (yes=use rainfall and irri table; no for no water stress)
-#######  	set following parameter to overwrite in R code: Tsum,	HI,	I50A,	I50B,
-#######  	NOTE-to leave some notes
-####### 
-#######  2. prepare irrigation table
-#######  	file: irrigation.csv        IRVAL=irrgation in mm per specific date
-#######
-#######  3. Prepare weather file
-#######   	if from DSSAT
-#######          *WEATHER : AUCB
-#######          @ INSI      LAT     LONG  ELEV   TAV   AMP REFHT WNDHT
-#######          AUCB   -35.00   149.00     0  17.0   7.0   -99   -99
-#######          DATE  SRAD  TMAX  TMIN  RAIN   
-# data must start as line 4 and remove "@" here
-#######   
-#######          or CSV with same headers
-#######
-#######   4. Add a new parameter list in [Crop Parameter List] 
-#(copy and rename to new crop below) 
-#######
-#######   5. Add a selection case in [copy Crop Parameter Selection near line 610]
-#######  	if(treat$Crop[1]=="potato"){para<-potatoPara}; --->
-#copy and rename to new crop
-#######
-#######   6. Add obs data
-#######     copy: @TRNO	DATE	UYAD	LAID
-#######     Extend to: TRNO	DATE	DAP	GWAD	LAID	fSolar	CWAD 
-###### DAP=day fater planting=DATE-sowing_date
-#######     GWAD=yield
-#######     CWAD=total above ground + yield (no roots)  
-#### must hav at least 1 data/trt
-#######     fSolar=1-EXP(-k*LAI)
-#######     delate Date and LAID
-#######     save file as Obs_crop_name_exp_name.csv
-#######
-#######
-##########################################################
+
 #################  load R packages --- needs to stay here 
 
 rm(list=ls())   #### cleans memory - needs to saty here
@@ -151,24 +99,6 @@ RunModel=function(i){
   return(res)
 }
 
-#####Run all the experiment one by one
-# x=1:nrow(treatment)
-# results=list()
-# if(GridsimulationSwitch=='OFF'){observations=list()}
-# for (i in 1:length(x))
-# {
-#   results[[i]]=list()
-#   source("Mainfunction.R")
-#   res=RunModel(x[i])
-#   results[[i]]<-res
-# 
-#   if(GridsimulationSwitch=='OFF'){
-#     source("Obsfunction.R")
-#     obs=ObsInput(x[i])
-#     observations[[i]]<-obs}
-# }
-
-##########
 
 
 ########parallel running
@@ -233,18 +163,6 @@ if(GridsimulationSwitch=='OFF'){
     
   source("MapPlot.R")
   
-  
-  Worldcountry=readRDS(file = "./Input/Map/Worldcountry.rds")
-  Worldstate=readRDS(file = "./Input/Map/ne_10m_admin_1_states_provinces.rds")
-  
-  
-  if(MapExtention=="World"){
-    WMap <- Worldcountry
-  }else{WMap<-Worldstate[Worldstate@data$admin==MapExtention,]
-  WMap<- subset(WMap,!fips %in% c("US02", "US15", "US72"))}
-  
-  MapPlot(Res_SummaryMap,index="Yield",WMap,MapExtention,Title="Potato_Yield",
-          Unit="Yield(kg/ha)")
-}
+ }
 
 
