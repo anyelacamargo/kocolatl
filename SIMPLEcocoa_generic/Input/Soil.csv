@@ -1,0 +1,23 @@
+SoilName*,AWC,RCN,DDC,RZD
+Loamy sand1,0.12,70,0.3,800
+Clay loam1,0.18,60,0.7,1200
+Sand1,0.07,60,0.7,800
+Sandy loam1,0.14,75,0.6,1900
+Clay loam2,0.18,75,0.4,2200
+Loamy sand2,0.12,70,0.3,600
+Loamy sand3,0.12,70,0.3,400
+Loamy sand4,0.12,60,0.65,1500
+Loamy sand5,0.12,75,0.6,300
+Loamy sand6,0.1,70,0.6,300
+Loamy sand7,0.1,64,0.8,1200
+Loamy sand8,0.12,70,0.3,600
+Sand2,0.08,65,0.5,1000
+Clay1,0.25,60,0.7,1200
+Sandy loam2,0.14,66,0.5,1000
+Clay loam3,0.19,85,0.1,800
+Sand3,0.05,65,0.5,1800
+Sandy loam3,0.13,85,0.4,1500
+Loamy sand9,0.11,70,0.5,1500
+Sand4,0.09,75,0.4,500
+Sand5,0.08,65,0.5,700
+Dummy soil,0.12,70,0.3,800
