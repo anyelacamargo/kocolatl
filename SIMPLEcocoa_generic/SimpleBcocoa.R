@@ -1,16 +1,17 @@
-# Angela Romero Vergel y Anyela Camargo , Niab 2021
-# modeified frum Zhao 2019 A SIMPLE crop model
+#########################SIMPLE MODEL v1.1###########################
+
+#######  KOKOlatm Lanitoamenrican cocoa to predict the optimal harvest time 
+#Updated by Angela Romero Vergel,NIAB,Cocoa project ------  2021-08-11 
+##################################################################
+
+#rm(list=ls())   #### cleans memory - needs to saty here
 library(ggplot2)
 library(plyr)
 library(parallel)
-#
-
+#setwd("C:/Users/Angelita/Documents/SIMPLEcocoa_Generic")
 source("Plot.R")
 source("Mainfunction.R")
 source("Obsfunction.R")
-
-
-
 
 RunModel=function(i){
   source("Mainfunction.R")
@@ -67,58 +68,39 @@ organise_data <- function(GridsimulationSwitch){
   
 }
 
-#########################SIMPLE MODEL v1.1###########################
-
-#######  KOKOlatm Lanitoamenrican cocoa to predict the optimal harvest time 
-#Updated by Angela Romero Vergel,NIAB,Cocoa project ------  2021-08-11 
-##################################################################
-
 
 ######weather directory for regional simulation###
 WeatherDir="./Gridcell Weather/historical/"
-
-######weather type option################
 WeatherType=c("WTH","CSV","Rdata")[1]
-
-#########Intput map##########################
-#MapExtention=c("World","United States of America","China","Canada","Brazil","...")[2]
-#SimulatingYear=c(2001)
-############  Gridcell Simulation Switch  ######################
 GridsimulationSwitch=c('OFF','ON')[1]  
 ########1=single point simulation, 2= Grid cell simulation
-
 ########## Output option################
 DailyOutputforgridcell=c('OFF','ON')[2]
 DailyOutputOutput=c("Crop","Exp","Label","Trt","Day","DATE","Tmax","Tmin","Radiation",
                     "TT","fSolar","Biomass","dBiomass","HI","Yield","F_Temp","F_Heat",
                     "F_Water","ARID","I50B","I50A","ETO","MaturityDay")
-#MapoutputYear=2001
-
 
 ############  Model starts here  ###########################
-############  Read inputs - treatments, soil weather, CO2
-
-
 bundle <- organise_data(GridsimulationSwitch)
 irri <- bundle$irri
 treatment <- bundle$treatment
 
 ########parallel running
-t1=Sys.time() 
-x=1:nrow(treatment)
-no_cores <- detectCores() - 1
+#t1=Sys.time() 
+#x=1:nrow(treatment)
+#no_cores <- detectCores() - 1
 cl <- makeCluster(mc <- getOption("cl.cores", no_cores))
 clusterExport(cl, c("treatment","irri","GridsimulationSwitch","WeatherType",
                     "WeatherDir","DailyOutputOutput"))
-results <- parLapply(cl,x,RunModel) 
+results <- parapply(cl,x,RunModel) 
 if(GridsimulationSwitch=='OFF')
 {
  
-  observations<- parLapply(cl,x,ObsInput) 
+  observations<- parapply(cl,x,ObsInput) 
 }
 
-stopCluster(cl)
-Sys.time()-t1
+#stopCluster(cl)
+#Sys.time()-t1
 ###########
 
 #########Simulation results reorganization
@@ -126,12 +108,7 @@ res.df <- do.call('rbind',results)
 Res_daily=ldply(res.df[,1])
 Res_summary=ldply(res.df[,2])
 
-
 # Call organise_data
-
-
-
-
 if(GridsimulationSwitch=='OFF'){
   obs.df=do.call('rbind',observations)
   Obs_Biomass=ldply(obs.df[,1])
@@ -150,7 +127,7 @@ if(GridsimulationSwitch=='OFF'){
   write.table(Res_summary,paste("./Output/Res_summary_",Speciesgap,"_",Yeargap,
               ".csv",sep=""),col.names=TRUE,row.name=FALSE,sep=",")
   
-  
+
   gplot(Res_daily,Res_Summary,Obs_Biomass,Obs_FSolar)
 }else{
   treatmentsub=treatmentsingle[,c('Exp.','Species.','Trt.','row','col','lat')]
@@ -158,6 +135,7 @@ if(GridsimulationSwitch=='OFF'){
                              "MaturityDay")]
   Res_Summary=merge(treatmentsub,Res_summary,by.x="Exp.",by.y = "Exp")
   Yeargap=paste(unique(format(Res_Summary$MaturityDay,"%Y")),collapse = "_")
+  print(Res_Summary$MaturityDay)
   if(DailyOutputforgridcell=='ON'){
     write.table(Res_daily,paste("./Output/Gridcell_daily_",Res_Summary$Species.[1],
             "_",Yeargap,".csv",sep=""),col.names=TRUE,row.name=FALSE,sep=",")
@@ -167,9 +145,6 @@ if(GridsimulationSwitch=='OFF'){
                                "_",Yeargap,".csv"),row.names = F)
   
   Res_SummaryMap=Res_Summary[Res_Summary$MaturityYear==MapoutputYear,]
-    
-  
   
  }
-
 
