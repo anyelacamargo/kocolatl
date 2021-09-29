@@ -86,8 +86,8 @@ irri <- bundle$irri
 treatment <- bundle$treatment
 
 ########parallel running
-t1=Sys.time() 
-x=1:nrow(treatment)
+#t1=Sys.time() 
+#x=1:nrow(treatment)
 #no_cores <- detectCores() - 1
 cl <- makeCluster(mc <- getOption("cl.cores", no_cores))
 clusterExport(cl, c("treatment","irri","GridsimulationSwitch","WeatherType",
@@ -96,11 +96,11 @@ results <- parapply(cl,x,RunModel)
 if(GridsimulationSwitch=='OFF')
 {
  
-  observations<- parLapply(cl,x,ObsInput) 
+  observations<- parapply(cl,x,ObsInput) 
 }
 
-stopCluster(cl)
-Sys.time()-t1
+#stopCluster(cl)
+#Sys.time()-t1
 ###########
 
 #########Simulation results reorganization
