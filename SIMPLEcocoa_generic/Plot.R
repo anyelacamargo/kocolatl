@@ -1,142 +1,149 @@
-#####Plot by Liujun
+#########################SIMPLE MODEL v1.1###########################
 
+#######  KOKOlatm Lanitoamenrican cocoa to predict the optimal harvest time 
+#Updated by Angela Romero Vergel,NIAB,Cocoa project ------  2021-08-11 
+##################################################################
 
-Plot_theme <-function(..., bg='transparent')
-gplot=function(Res_Daily,Res_Summary,Obs_Biomass,Obs_FSolar){
-  Res_Daily$Trt=paste(Res_Daily$Exp,"_Trt_",Res_Daily$Trt,sep="")
-  Res_Daily$LableCrop=paste0(Res_Daily$Crop,"_",Res_Daily$Label)
-####mutiplot 
-multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
-  library(grid)
+#rm(list=ls())   #### cleans memory - needs to saty here
+library(ggplot2)
+library(plyr)
+library(parallel)
+#setwd("C:/Users/Angelita/Documents/SIMPLEcocoa_Generic")
+source("Plot.R")
+source("Mainfunction.R")
+source("Obsfunction.R")
+
+RunModel=function(i){
+  source("Mainfunction.R")
+  paras=ParaInput(i)
+  res<-tryCatch({SIMPLE(para=paras[c(1:3)],weather=paras$weather,
+                        ARID=paras$ARID)},error=function(e){cat("ERROR :", conditionMessage(e),"\n")})
+  return(res)
+}
+
+organise_data <- function(GridsimulationSwitch){
   
-  # Make a list from the ... arguments and plotlist
-  plots <- c(list(...), plotlist)
-  
-  numPlots = length(plots)
-  
-  # If layout is NULL, then use 'cols' to determine layout
-  if (is.null(layout)) {
-    # Make the panel
-    # ncol: Number of columns of plots
-    # nrow: Number of rows needed, calculated from # of cols
-    layout <- matrix(seq(1, cols * ceiling(numPlots/cols)),
-                     ncol = cols, nrow = ceiling(numPlots/cols))
-  }
+  if(GridsimulationSwitch=='OFF'){
+    management<-read.table("./Input/Simulation Management.csv",header=TRUE,sep=","
+                           ,stringsAsFactors=FALSE)
+    treatment<-read.table("./Input/Treatment.csv",header=TRUE,sep=","
+                          ,stringsAsFactors=FALSE);treatment$Species.=tolower(treatment$Species.)
     
+    cultivar<-read.table("./Input/Cultivar.csv",header=TRUE,sep=","
+                         ,stringsAsFactors=FALSE);cultivar$Species.=tolower(cultivar$Species.)
+    
+    irri<-read.table("./Input/Irrigation.csv",header=TRUE,sep=","
+                     ,stringsAsFactors=FALSE);irri$Species.=tolower(irri$Species.)
+    soil<-read.table("./Input/Soil.csv",header=TRUE,sep=",",stringsAsFactors=FALSE)  
+    para_spec<-read.table("./Input/Species parameter.csv",header=TRUE,sep=","
+                          ,stringsAsFactors=FALSE);para_spec$Species.=tolower(para_spec$Species.)
+    
+    ####match experiment
+    management<-management[management$ON_Off==1,]
+    treatment<-merge(treatment,management,by=c("Species.","Exp.","Trt.")
+                     , suffixes=c("",".y"))
+    treatment<-merge(treatment,soil,by="SoilName.")
+    treatment<-merge(treatment,para_spec,by="Species.")
+    treatment<-merge(treatment,cultivar,by=c("Species.","Cultivar."))
+  }else{
+    treatment<-read.table("./Input/Grid_input.csv",header=TRUE,sep=","
+                          ,stringsAsFactors=FALSE);treatment$Species.=tolower(treatment$Species.)
+                          para_spec<-read.table("./Input/Species parameter.csv"
+                                                ,header=TRUE,sep=",",
+                                                stringsAsFactors=FALSE);para_spec$Species.=tolower(para_spec$Species.)
+                          irri<-read.table("./Input/Irrigation.csv",header=TRUE,sep=","
+                                           ,stringsAsFactors=FALSE);irri$Species.=tolower(irri$Species.)
+                          treatment<-merge(treatment,para_spec,by="Species.")
+                          treatmentsingle<-treatment
+                          x=1:length(SimulatingYear)
+                          no_cores <- detectCores() - 1
+                          cl <- makeCluster(mc <- getOption("cl.cores", no_cores))
+                          clusterExport(cl, c("treatment","SimulatingYear"))
+                          results <- parLapply(cl,x,Treatmentplusyear) 
+                          stopCluster(cl)
+                          treatment <- do.call('rbind',results) 
+  }
+  
+  return(list('treatment'=treatment, 'irri' = irri))
+  
+}
+
+
+######weather directory for regional simulation###
+WeatherDir="./Gridcell Weather/historical/"
+WeatherType=c("WTH","CSV","Rdata")[1]
+GridsimulationSwitch=c('OFF','ON')[1]  
+########1=single point simulation, 2= Grid cell simulation
+########## Output option################
+DailyOutputforgridcell=c('OFF','ON')[2]
+DailyOutputOutput=c("Crop","Exp","Label","Trt","Day","DATE","Tmax","Tmin","Radiation",
+                    "TT","fSolar","Biomass","dBiomass","HI","Yield","F_Temp","F_Heat",
+                    "F_Water","ARID","I50B","I50A","ETO","MaturityDay")
+
+############  Model starts here  ###########################
+bundle <- organise_data(GridsimulationSwitch)
+irri <- bundle$irri
+treatment <- bundle$treatment
+
+########parallel running
+t1=Sys.time() 
+x=1:nrow(treatment)
+#no_cores <- detectCores() - 1
+cl <- makeCluster(mc <- getOption("cl.cores", no_cores))
+clusterExport(cl, c("treatment","irri","GridsimulationSwitch","WeatherType",
+                    "WeatherDir","DailyOutputOutput"))
+results <- parapply(cl,x,RunModel) 
+if(GridsimulationSwitch=='OFF')
 {
-  require(grid)
-  theme_bw(...) +
-    theme( rect=element_rect(fill=bg),
-           legend.position="right",  
-           legend.text=element_text(size=12,colour="black"), 
-           legend.key=element_blank(), 
-           plot.title=element_text(size=12, colour="black",face="bold",hjust=0.5, vjust=0), 
-           plot.margin=unit(rep(0.5,4), 'lines'), 
-           panel.background=element_rect(fill='transparent', color='transparent'),
-           panel.grid=element_blank(),
-           axis.title=element_text(size=15,colour="black",  face="bold",vjust=0.1),
-           axis.line = element_blank(),
-           axis.ticks = element_line(colour = "black", size = 1, linetype = 1),
-           axis.text=element_text(size=12,colour="black"), 
-           axis.text.x = element_text(margin=margin(15,15,10,5,"pt"),face="bold",angle=0), 
-           axis.text.y = element_text(margin=margin(15,15,10,5,"pt"),face="bold"),
-           strip.text=element_text(size=12,colour="black"), 
-           strip.background=element_blank()   
-    )
+ 
+  observations<- parLapply(cl,x,ObsInput) 
+}
+
+stopCluster(cl)
+Sys.time()-t1
+###########
+
+#########Simulation results reorganization
+res.df <- do.call('rbind',results) 
+Res_daily=ldply(res.df[,1])
+Res_summary=ldply(res.df[,2])
+
+# Call organise_data
+if(GridsimulationSwitch=='OFF'){
+  obs.df=do.call('rbind',observations)
+  Obs_Biomass=ldply(obs.df[,1])
+  Obs_FSolar=ldply(obs.df[,2])
+  Obs_Yield=ldply(obs.df[,3])
+  Obs_Summary=ldply(obs.df[,4])
+  Obs_Summary=Obs_Summary[,c('Trt','Exp','Yield')]
+  Res_Summary=merge(Res_summary,Obs_Summary,by=c('Trt','Exp'))[,
+      c("Crop","Exp","Label","Yield.x","Yield.y","Duration","Trt")]
+  names(Res_Summary)[4:5]=c("Sim_Yield","Obs_Yield")
+  ##### write the simulations into files
+  Yeargap=paste(unique(format(Res_summary$MaturityDay,"%Y")),collapse = "_")
+  Speciesgap=paste(unique(Res_summary$Crop),collapse = "_")
+  write.table(Res_daily,paste("./Output/Res_daily_",Speciesgap,"_",
+         Yeargap,".csv",sep=""), col.names=TRUE,row.name=FALSE,sep=",")
+  write.table(Res_summary,paste("./Output/Res_summary_",Speciesgap,"_",Yeargap,
+              ".csv",sep=""),col.names=TRUE,row.name=FALSE,sep=",")
   
-}
-theme_set(Plot_theme()) #####set theme by Liujun
 
-
-  if (numPlots==1) {
-    print(plots[[1]])
-    
-  } else {
-    # Set up the page
-    grid.newpage()
-    pushViewport(viewport(layout = grid.layout(nrow(layout), ncol(layout))))
-    
-    # Make each plot, in the correct location
-    for (i in 1:numPlots) {
-      # Get the i,j matrix positions of the regions that contain this subplot
-      matchidx <- as.data.frame(which(layout == i, arr.ind = TRUE))
-      
-      print(plots[[i]], vp = viewport(layout.pos.row = matchidx$row,
-                                      layout.pos.col = matchidx$col))
-    }
+  gplot(Res_daily,Res_Summary,Obs_Biomass,Obs_FSolar)
+}else{
+  treatmentsub=treatmentsingle[,c('Exp.','Species.','Trt.','row','col','lat')]
+  Res_summary=Res_summary[,c("Exp","SowingDate","Duration","Biomass","Yield",
+                             "MaturityDay")]
+  Res_Summary=merge(treatmentsub,Res_summary,by.x="Exp.",by.y = "Exp")
+  Yeargap=paste(unique(format(Res_Summary$MaturityDay,"%Y")),collapse = "_")
+  print(Res_Summary$MaturityDay)
+  if(DailyOutputforgridcell=='ON'){
+    write.table(Res_daily,paste("./Output/Gridcell_daily_",Res_Summary$Species.[1],
+            "_",Yeargap,".csv",sep=""),col.names=TRUE,row.name=FALSE,sep=",")
   }
-}
-
-
-    
-    P1=ggplot()+geom_line(data=Res_Daily,aes(x=Day,y=Biomass,colour=LableCrop),size=1)+
-      scale_x_continuous(limits=c(0,(max(Res_Summary$Duration)+10)))+ 
-      labs(title='(b) Biomass',x="Day after planting (d)",y="Biomass (kg/ha)")+
-      theme(legend.text=element_text(size=10),
-            legend.title=element_blank(),legend.justification=c(0,1),legend.position=c(0,1),
-            plot.title=element_text(size=14, hjust=0, vjust=0))
-    
-    
-    P2=ggplot()+geom_line(data=Res_Daily,aes(x=Day,y=fSolar,colour=LableCrop),size=1)+
-      scale_x_continuous(limits=c(0,(max(Res_Summary$Duration)+10)))+
-      labs(title='(c) FSolar',x="Day after planting (d)")+
-      theme(legend.position = "none",
-            plot.title=element_text(size=14, hjust=0, vjust=0))
-    
-    
-    R_summary<-Res_Summary[,c(-6,-7)] 
-    R_summary<-R_summary[order(R_summary$Crop),]
-    print(R_summary)
-    
-    ##### calculate RMSE and RRMSE for yield
-    R_summary<-R_summary[!is.na(R_summary$Obs_Yield),]
-    RMSE_yield<-sqrt(mean((R_summary$Sim_Yield-R_summary$Obs_Yield)^2))
-    RRMSE_yield<-RMSE_yield/mean(R_summary$Obs_Yield)
-    
-    print(paste("RMSE for yield is: ",round(RMSE_yield,0),"kg.ha-1"))
-    print(paste("RRMSE for yield is: ",100*round(RRMSE_yield,3),"%",sep=""))
-    
-    Obs_Biomass$LableCrop=paste0(Obs_Biomass$Crop,"_",Obs_Biomass$Label)
-    Obs_FSolar$LableCrop=paste0(Obs_FSolar$Crop,"_",Obs_FSolar$Label)
-    P3=P1+geom_point(data=Obs_Biomass,aes(x=DAP, y=Biomass, colour=LableCrop),size=3)  #change to Label by Liujun
-    P4=P2+geom_point(data=Obs_FSolar,aes(x=DAP, y=FSolar, colour=LableCrop),size=3)  #change to Label by Liujun
-    
-    
-    
-    ###########plot bar graph by Liujun########################
-    #install.packages("tidyr")
-    # library(tidyr)
-    # R_summaryplot=R_summary%>%gather(yield,yieldvalue,Obs_Yield,Sim_Yield)
-    R_summaryr1=data.frame(Crop=R_summary$Crop,Label=R_summary$Label,yield="Obs",yieldvalue=R_summary$Obs_Yield)
-    R_summaryr2=data.frame(Crop=R_summary$Crop,Label=R_summary$Label,yield="Sim",yieldvalue=R_summary$Sim_Yield)
-    R_summaryplot=rbind(R_summaryr1,R_summaryr2)
-    R_summaryplot$LableCrop=paste0(R_summaryplot$Crop,"_",R_summaryplot$Label)
-    
-    maxvalue=max(R_summaryplot$yieldvalue)*1.21
-    cbPalette <- c("black", "white")
-    cbstroke <- c("black","black")
-    
-    annotateText <- paste("RRMSE = ",100*round(RRMSE_yield,3),"%",sep="")
-    
-    
-    P5=ggplot(data=R_summaryplot,aes(x=LableCrop,y=yieldvalue))+
-      geom_bar(stat="identity", width=.5, aes(fill=yield,colour=yield), position="dodge")+
-      labs(title='(a) Yield', 
-           x="Treatment", 
-           y="Yield (kg/ha)")+ 
-      scale_y_continuous(limits = c(0,maxvalue),breaks = seq(0,maxvalue,2000))+
-      scale_fill_manual(values=cbPalette)+
-      scale_colour_manual(values=cbstroke)+
-      geom_text(aes(x=Inf,y=Inf,hjust=1.1,vjust=1.5,label=annotateText))+
-      theme(axis.text.x = element_text(angle=35, vjust=1,hjust=1),
-            plot.subtitle=element_text( colour="black",hjust=0.5, vjust=-1),
-            legend.justification=c(0,1),legend.position=c(0,1),
-            legend.background = element_blank(), legend.title = element_blank(),
-            plot.title=element_text(size=14, hjust=0, vjust=0))
-    
-    
-    windows(width=16, height=8)
-    multiplot(P5, P3, P4, cols=3)
-}
-
-
+  Res_Summary$MaturityYear=substr(Res_Summary$MaturityDay,1,4)
+  write.csv(Res_Summary,paste0("./Output/Gridcell_summary",Res_Summary$Species.[1],
+                               "_",Yeargap,".csv"),row.names = F)
+  
+  Res_SummaryMap=Res_Summary[Res_Summary$MaturityYear==MapoutputYear,]
+  
+ }
