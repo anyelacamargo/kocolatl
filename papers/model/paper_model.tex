@@ -193,9 +193,7 @@ Thermal time (degree days) was calculated as cumulative sum of temperature from 
 
 \subsection{SIMPLE crop model calibration}
 
-The procedure for the SIMPLE model \citep{Zao2019simple}calibration used was a sequential process of modifying or adding the appropriate files, changing the parameters in the simulation management file, running the program and inspecting the results. This cycle was then repeated until the  simulated yields for cocoa were reasonably close to the observed yield. 
-
-In the SIMPLE model dummy files are provided for adding new cocoa crop data and weather data, and files 2 to 6 in the list below can be edited to define new cultivars or experiments. Then modifying the simulation management file will cause the new files to be read when the program is run.
+The procedure for the SIMPLE model \citep{Zao2019simple}calibration used was a sequential process of modifying or adding the appropriate files, changing the parameters in the simulation management file, running the program and inspecting the results. This cycle was then repeated until the  simulated yields for cocoa were reasonably close to the observed yield. In the SIMPLE model dummy files are provided for adding new cocoa crop data and weather data, and files 2 to 6 in the list below can be edited to define new cultivars or experiments. Then modifying the simulation management file will cause the new files to be read when the program is run.
 \begin{enumerate}
 	\item Input/Simulation Management.csv
 	\item Input/Species parameter.csv
@@ -207,65 +205,65 @@ In the SIMPLE model dummy files are provided for adding new cocoa crop data and 
     \item Weather/dummy weather.WTH
 \end{enumerate}
 
-The first step was add the new experiment for cocoa in the dummy crop and experiment names were replaced with our crop and treatment names in the input files and flowering date was changed. Thermal time values required for Input/Cultivar.csv  had to be defined for ICS 95 and CCN51 cultivars using field data from Fedecacao plot reports in Santander and Caldas, Colombia.  Thus, the date for harvest is predicted when the model calculations reach the thermal time  for  each specific cultivar ICS 95 and CCN51. The new experiment name “KOKOlatl” for was used in the species parameter file with the respective values of parameters for cocoa including irrigation, soil features and radiation use efficiency \citep{zuidema2005} \textcolor{red}{add table parameters values will change through the calibration}. 
+\subsection{Parameters}
+There were three parameters varied by region (table \ref{tab:reparam}) thermal time required for pod harvest after the flowering date (Tsum) , the Radiation use efficiency (RUE) and yield observed on field. Physiological parameters in table \ref{tab:Treaparam} are  common  for all the regions studied. These parameter were calibrate for cultivars ICS95 and CCN51 considering a range of time of 200 days (DAP) from flowering date to harvest day, even thought farmers collect the pod at 180 DAP. Heat and water stress parameters were not considered.
 
 
 \begin{table}[h!]	
-\caption {\footnotesize {Cocoa crop parameter values used in Species-parameter file.}} \label{tab:Speparams} 
+	\caption {\footnotesize {Cocoa crop parameter values used per region.}}
+	\label{tab:reparam} 
 	\centering
 	\begin{small}
-		\begin{tabular}{{c c c c c c c c c }}
+		\begin{tabular}{l c c c }
 			\hline
-			{\bf Tbase }& {\bf Topt } & {\bf RUE} & {\bf I50maxH}& {\bf I50maxW}& {\bf MaxT}& {\bf ExtremeT} & {\bf CO2-RUE}& {\bf S-water}\\
+			{\bf Cultivar }&{\bf Tsum }&{\bf RUE}&{\bf Yield$^{*}$}\\
 			\hline
-			10& 26 & 0.6 & 100 & 5& 35&40&0.09&0 \\
+			Santander & 2016 &0.6 & 2687 \\
+			Apartado   & 2906 & 0.6 & 3378  \\
+			Arauca   & 1912 & 0.7 & 3981  \\
+			Cali   & 2764 & 0.5 & 1900  \\
+			Caldas   & 1192 & 0.6 & 740  \\
 			\hline
-		\end{tabular}  
+		\end{tabular} \\
+		{\footnotesize $^{*}$ Yield observed kg ha$^{-1}$ per year} 
+	\end{small}
+\end{table}
+
+
+\begin{table}[h!]	
+	\caption {\footnotesize {Parameter values used to run SIMPLEcocoa model.}}
+	\centering
+     \label{tab:Treaparam} 
+	\begin{small}
+		\begin{tabular}{{l l l}}
+			\hline
+            {\bf File }&{\bf Variable name }&{\bf Value}\\
+			\hline
+			&SoilName & Loamy sand4\\
+			&InitialFsolar & 0.01\\
+			Treatment&Weather & KOKO (.WTH file name)\\
+			&CO$_{2}$ & 400\\
+			&SowingDate &Flowering date\\
+			\hline
+			&Crop cycle DAP & 200 days\\
+			&LAI & 1.8 \\
+			Observation&FSolar& 0.70\\
+			&Biomass & 40kg dry mass per plant\\
+			\hline
+			&Harvest index & 0.3\\
+			Cultivar&150A & 680 $^\circ$C day \\
+			&150B & 680 $^\circ$C day \\
+			\hline
+			&Tbase & 10$^\circ$C\\
+			&Topti & 26$^\circ$C \\
+			Species&MaxT & 35$^\circ$C \\
+			&ExtremeT & 40$^\circ$C  \\
+			&CO$_{2}$RUE & 0.09$^\circ$C  \\			
+			&S-water & 0 ARID index \\
+			\hline			
+		\end{tabular} \\ 
+	\end{small}
 	{\footnotesize S-water is associated drought stress evaluations ranging from 0 (no water shortage) to 1 (extreme water shortage) \cite{Zao2019simple} }
-	\end{small}
-\end{table}
-
-
-\begin{table}[h!]	
-\caption {\footnotesize {Cocoa crop parameter values used in Cultivar file.}}
-\label{tab:Culparam} 
-	\centering
-	\begin{small}
-		\begin{tabular}{c c c c c}
-			\hline
-			{\bf Cultivar }&{\bf Tsum }&{\bf HI}&{\bf I50A}&{\bf I50B}\\
-			\hline
-			ICS 95 & 1912 & 0.3 & 680 & 200 \\
-			CCN51  & 1912 & 0.3 & 680 & 200 \\
-			\hline
-		\end{tabular}  
-	\end{small}
-\end{table}
-
-
-\begin{table}[h!]	
-	\caption {\footnotesize {Cocoa crop parameter values used in Treatment and Observation file.}} \label{tab:Treaparam} 
-	\centering
-	\begin{small}
-		\begin{tabular}{{c c }}
-			\hline
-			{\bf Variable name }&{\bf Value}\\
-			\hline
-			Exp&KOKOlatl\\
-			Label& Colombia\\
-			Weather & KOKOS (.WTH file name)\\
-			CO2 & 400\\
-			SowingDate &flowering date\\
-			SoilName & Loamy sand4\\
-			Cultivar& ICS 95 or CCN51\\
-			MaxIntercept& 0.95\\
-			InitialBio & 1\\
-			InitialTT & 0\\
-			InitialFsolar & 0.01 \\
-			LAI & 1.8 \\
-			\hline
-		\end{tabular}  
-	\end{small}
 \end{table}
 
 
@@ -301,7 +299,7 @@ The thermal time characterization showed differences per region as was expected.
 \end{figure}
 
 \subsection{Weather effects}
-Studying the weather data effects over the flowering date and their final yield. In a preliminary analysis of Santanter data, We found that the number of successful flowers pollinated to produce final yield can be affected mostly by the rain, TMAX and wind (Figure \ref{fig:correlation}). Farmers 
+Studying the weather data effects over the flowering date and their final yield. In a preliminary analysis of Santanter data, We found that the number of successful flowers pollinated to produce final yield can be affected mostly by the rain, TMAX and wind (Figure \ref{fig:heat}). Farmers 
 
 
 \begin{figure}[h!]
@@ -329,7 +327,7 @@ Studying the weather data effects over the flowering date and their final yield.
 \begin{figure}[h!]
 	\centering
 	\caption{\footnotesize {Pearson correlation among weather variables and flowering dates all locations. \\}} 
-	\includegraphics[scale=0.5]{images/heatm.png}\\
+	\includegraphics[scale=0.4]{images/heatm.png}\\
 	\label{fig:heat}
 	{\footnotesize thermalT= thermal time without Tb. ttb= thermal time with Tb. WS2M= Wind Speed at 2 Meters (m/s). T2MDEW = Dew/Frost Point at 2 Meters ($^\circ$C) }
 \end{figure}
