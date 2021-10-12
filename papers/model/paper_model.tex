@@ -44,7 +44,6 @@
 % pdftex
 %---------
 % The option pdftex is for use with pdfLaTeX. If eps figures are used, remove the option pdftex and use LaTeX and dvi2pdf.
-
 %=================================================================
 % MDPI internal commands
 \firstpage{1} 
@@ -84,7 +83,7 @@
 %\newcommand{\orcidauthorB}{0000-0000-0000-000X} % Add \orcidB{} behind the author's name
 
 % Authors, for the paper (add full first names)
-\Author{Angela Romero V $^{1,\dagger,\ddagger}$*\orcidA{}, Adriana Gallego $^{2}$ and Anyela V. Camargo R.$^{1, \ddagger}$}
+\Author{Angela Romero V $^{1,\ddagger}$*\orcidA{}, Adriana Gallego $^{2}$ and Anyela V. Camargo R.$^{1, \ddagger}$}
 
 % MDPI internal command: Authors, for metadata in PDF
 \AuthorNames{Firstname Lastname, Firstname Lastname and Firstname Lastname}
@@ -94,9 +93,7 @@
 % If this is a Chicago style journal: Lastname, Firstname, Firstname Lastname, and Firstname Lastname.
 
 % Affiliations / Addresses (Add [1] after \address if there is only one affiliation.)
-\address{%
-$^{1}$ \quad The John Bingham Laboratory, NIAB, 93 Lawrence Weaver Road, Cambridge CB3 0LE, UK 1}\\ %e-mail@e-mail.com\\
-$^{2}$ \quad BIOS Colombia}%; e-mail@e-mail.com}
+\address{$^{1}$ \quad The John Bingham Laboratory, NIAB, 93 Lawrence Weaver Road, Cambridge CB3 0LE, UK 1\\$^{2}$ \quad BIOS Colombia}%; e-mail@e-mail.com}
 
 % Contact information of the corresponding author
 \corres{Correspondence: angela.romerovergel@niab.com} %; Tel.: (optional; include country code; if there are multiple corresponding authors, add author initials) +xx-xxxx-xxx-xxxx (F.L.)}
@@ -122,7 +119,6 @@ $^{2}$ \quad BIOS Colombia}%; e-mail@e-mail.com}
 %\setcounter{section}{-1} %% Remove this when starting to work on the template.
 
 \section{Introduction}
-
 Cocoa ( \textit{Theobroma cacao }L. ) is an important worldwide perennial tropical crop endemic to the South American rainforests \citep{zuidema2005, motamayor2002, argout2011, Rodriguez2019}. Cacao plant member of the Malvaceae (formerly Sterculiaceae)  botanical family such as  cotton \textit{ Gossypium hirstium} \citep{Nix2017cotton} wich is modeled in SIMPLE model \citep{Zao2019simple}. Cocoa is grown for its fruits, known as cacao pods.  \citep{ Niemenak2010, suarez2021}. Only the 5\% of the world cocoa yield is desalinated for Fine-cocoa production due to the low productivity of  the traditional crop management \citep{argout2011}.  In Colombia, cocoa  is  traditionally  consumed  as  a  beverage. It is one of the crops promoted by the Colombian government in the social and agricultural development  programs aimed at favouring peace in post-conflict regions \citep{Rodriguez2019, Abbott2019} as cocoa is grown by approximately 52.000 \citep{Gutierrez2020} and 98\% of production being carried out by small and medium-sized producers \citep{Garcia2014, Escobar2020}. Colombia registered an increase of 3.750 tons in production in 2020 compared to the previous year \citep{lamos2020}. 
 
 Although Colombian cocoa has the potential to be in the high value markets for fine flavour \citep{Escobar2020}, it is still not widely produced as the lack of adoptions of technologies by the traditional farmers. They empirically harvest after 5 or 6 months after flowering date, hence they ferment cocoa beans without considering the  quality of the seeds at the harvest time. This produce heterogeneous characteristics between each fermentation batch diminishing the quality of cocoa final product \citep{Escobar2021}. To identify the best moment to harvest is important to consider physiological responses affected by climate variables such as rain, solar radiation and wind.  Thus,  for cocoa in Colombia, physiological simulation models may be valuable to identify the best moment to harvest cocoa considering variable weather conditions, soil types and cultivar specifications. 
@@ -145,7 +141,7 @@ Subsequentially, after anthesis the fruit growths by approximately 150 days unti
 \begin{figure}[h!]
 	\centering
 	\caption{\footnotesize {Phenology of cocoa in Colombia for crop modelling.\\}} 
-	\includegraphics[scale=0.3]{images/phenology.png}\\
+	\includegraphics[scale=0.4]{images/phenology.png}\\
 	\footnotesize{Credits: Taken from from Dreamstime.com, phys.org \citep{toledo2021} and \cite{lopez2018}}
 	\label{fig:pheno}
 \end{figure}
@@ -172,20 +168,19 @@ The temperature ranges from 16 to 28 $^\circ$C and it is relatively constant dur
 
 \begin{figure}[h!]
 	\centering
-	\caption{\footnotesize {Daily average temperature and available photosynthetic solar radiation (PAR) conditions. \\}}
-	\includegraphics[scale=0.25]{images/tempe.png}
-	\includegraphics[scale=0.25]{images/SRAD.png}
+	\includegraphics[scale=0.5]{images/clima.png}
+	\caption{\footnotesize {Daily average temperature and available photosynthetic solar radiation (PAR) conditions. \\}}	
 	\label{fig:temp}
 \end{figure}
 
 
 \begin{figure}[h!]
 	\centering
-	\caption{\footnotesize {Precipitation and relative humidity per month in Colombia \\}}
 	\includegraphics[scale=0.4]{images/rainmonth.png}
+	\caption{\footnotesize {Precipitation and relative humidity per month in Colombia \\}}
 	\label{fig:rain}
 \end{figure}
-\newpage
+
 
 \subsection{Thermal time for pod harvest date identification}
 Thermal time (degree days) was calculated as cumulative sum of temperature from the flowering date to the pod harvest. It is required to model crop growth  considering the cocoa base temperature (T$_{b}$), at which the plant development stops \citep{Ritchie1991}. Thus a cocoa T$_{b}$ of 10$^\circ$C was considered according to \cite{lahive2019}. This characterization was conducted for the five regions counted 180 days (6 months) and 210 days (7 months just for Cladas) after flowering, as farmers used to harvest by calendar days. Characterizing the thermal time the models predicts the maturation day to harvest the cocoa can vary depending on temperature variations.    
@@ -293,8 +288,8 @@ The thermal time characterization showed differences per region as was expected.
 
 \begin{figure}[h!]
 	\centering
+	\includegraphics[scale=0.25]{images/ttbbox.png}
 	\caption{\footnotesize {Thermal time characterization of cocoa for five locations.\\}} 
-	\includegraphics[scale=0.3]{images/ttbbox.png}
 	\label{fig:ttbox}
 \end{figure}
 
@@ -304,16 +299,16 @@ Studying the weather data effects over the flowering date and their final yield.
 
 \begin{figure}[h!]
 	\centering
-	\caption{\footnotesize {SIMPLE model output for cocoa in Colombia.\\ }} 
 	\includegraphics[scale=0.35]{images/outmodel.png}
+	\caption{\footnotesize {SIMPLE model output for cocoa in Colombia.\\ }} 
 	\label{fig:m1}
 \end{figure}
 
 \subsection{Day of harvest prediction}
 \begin{figure}[h!]
 	\centering
+	\includegraphics[scale=0.4]{images/RegionHarvest2.png}
 	\caption{\footnotesize {Day of harvest cocoa simulation\\ }} 
-	\includegraphics[scale=0.4]{images/RegionHarvest.png}
 	\label{fig:dayH}
 \end{figure}
 %\begin{figure}[h!]
@@ -326,9 +321,9 @@ Studying the weather data effects over the flowering date and their final yield.
 
 \begin{figure}[h!]
 	\centering
-	\caption{\footnotesize {Pearson correlation among weather variables and flowering dates all locations. \\}} 
 	\includegraphics[scale=0.4]{images/heatm.png}\\
 	\label{fig:heat}
+	\caption{\footnotesize {Pearson correlation among weather variables and flowering dates all locations. \\}} 
 	{\footnotesize thermalT= thermal time without Tb. ttb= thermal time with Tb. WS2M= Wind Speed at 2 Meters (m/s). T2MDEW = Dew/Frost Point at 2 Meters ($^\circ$C) }
 \end{figure}
 \newpage
