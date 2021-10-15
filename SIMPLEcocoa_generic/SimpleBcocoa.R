@@ -24,7 +24,7 @@ RunModel = function(i){
 
 #FIXME Angela
 #pass date input to DOY
-fecha_floracion <- as.Date("2020-06-23") 
+fecha_floracion <- as.Date("2020-06-23") #enter here date of flowering
 date <- format(fecha_floracion, format="%Y-%b-%d")
 year <- (format(fecha_floracion, format="%y"))
 day = (format(fecha_floracion, format="%j"))
