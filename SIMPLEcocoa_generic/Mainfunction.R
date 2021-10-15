@@ -8,7 +8,8 @@
 
 SIMPLE<-function(para,weather,ARID)
 {
-
+  #para=paras[c(1:3)];weather=paras$weather;ARID=paras$ARID
+#
   #############  read crop and cv parameter
   Trt=para$Species$Trt.
   Tbase<-para$Species$Tbase
@@ -35,10 +36,12 @@ SIMPLE<-function(para,weather,ARID)
   FHarv<-400
   
   
-  if(is.na(harvestDate)){DUA=NA}else{
+  if(is.na(harvestDate)){
+    DUA=NA
+  }else {
     DUA<-as.numeric(harvestDate-sowingDate)+1
     weather<-weather[1:DUA,]
-    ARID<-ARID[1:DUA,]
+    ARID1<-ARID[1:DUA,]
   }
   
   stopday<-ifelse(nrow(weather)>FHarv,FHarv,nrow(weather))
@@ -47,9 +50,11 @@ SIMPLE<-function(para,weather,ARID)
   MaturityDay2<-stopday
   
   
-  Result=data.frame(Day = c(1:stopday),DATE=weather$IDATE[1:stopday],ETO=rep(0,stopday), TT=rep(0,stopday),Biomass=rep(0,stopday),
-                    Tmax=weather$TMAX[1:stopday],Tmin=weather$TMIN[1:stopday],Radiation=weather$SRAD[1:stopday],
-                    HI=rep(HIp,stopday),ARID=ARID[1:stopday,2],Trt=rep(Trt,stopday))
+  Result=data.frame(Day = c(1:stopday),DATE=weather$IDATE[1:stopday],
+                    ETO=rep(0,stopday), TT=rep(0,stopday),Biomass=rep(0,stopday),
+                    Tmax=weather$TMAX[1:stopday],Tmin=weather$TMIN[1:stopday],
+                    Radiation=weather$SRAD[1:stopday], HI=rep(HIp,stopday), 
+                    ARID=ARID[1:stopday,2], Trt=rep(Trt,stopday))
   
   Result$F_Water=mapply(Water_Response,ARID$ARID,S_Water);if(!water){Result$F_Water=1}
   Result$dETO<-ARID$ETO
@@ -203,11 +208,14 @@ ParaInput=function(i)
 {
   para <-list()
   ###treatment filter 
-  treat<-treatment[i,];print(paste(treat$Exp[1],treat$Trt[1]))
+  #treat <- i$treatment[i,];
+  treat <- i$treatment
+  #FIXME Added Anyela
+  print(paste(treat$Exp[1],treat$Trt[1]))
   
-  ###parameter input
+  #i$###parameter input
   ################## [Species Parameter Selection] 	 ##################
-  para$Species=treat[,c("Trt.","Species.","Tbase" , "Topt", "RUE", "I50maxH","I50maxW", "MaxT" , "ExtremeT","CO2_RUE" ,"S_Water" )]
+  para$Species = treat[,c("Trt.","Species.","Tbase" , "Topt", "RUE", "I50maxH","I50maxW", "MaxT" , "ExtremeT","CO2_RUE" ,"S_Water" )]
   
   ################## [culitvar Parameter Selection] 	 ##################
   para$Cultivar=treat[,c("Trt.","Tsum","HI" , "I50A", "I50B")]
@@ -217,7 +225,7 @@ ParaInput=function(i)
   
   
   ################## [irrigation Selection] 	 ##################
-  irrigation<-irri[irri$Species.==treat$Species. &irri$Exp.==treat$Exp. & irri$Trt.==treat$IrrigationTrt,]#print(irrigation);
+  #irrigation<-irri[irri$Species.==treat$Species. &irri$Exp.==treat$Exp. & irri$Trt.==treat$IrrigationTrt,]#print(irrigation);
   
   
   ###weather name
@@ -226,7 +234,10 @@ ParaInput=function(i)
   
   #source("Mainfunction.R")
   ###Add irrigation amounts to rainfall
-  weather=WeatherFunction(weaName,irrigation,GridsimulationSwitch,WeatherType,WeatherDir)
+  #FIXME Added Anyela
+  
+  weather = WeatherFunction(weaName,irrigation = NA, GridsimulationSwitch,WeatherType,WeatherDir)
+  #weather=WeatherFunction(weaName,irrigation,GridsimulationSwitch,WeatherType,WeatherDir)
   ###read Lat and Elev from weather
   if(GridsimulationSwitch=='OFF'){
     weaheader=readLines(paste0("./Weather/",weaName,".WTH"),n=4)[4]
@@ -267,13 +278,16 @@ DOYtoDate=function(DATE)
   return(DATE)
 }
 
-WeatherFunction=function(weatherName,irrigation,GridsimulationSwitch,WeatherType='WTH',WeatherDir)
+WeatherFunction=function(weatherName,irrigation=NA,GridsimulationSwitch,WeatherType='WTH',WeatherDir)
 {
   
   #############  read weather 
   if(WeatherType=='WTH'){
-    if(GridsimulationSwitch=='OFF'){weather<-read.table(paste0('./weather/',weatherName,".WTH"),header=TRUE,skip=4)}else{
-      weather<-read.table(paste0(WeatherDir,weatherName,".WTH"),header=TRUE,skip=3)}
+    if(GridsimulationSwitch=='OFF'){
+      weather<-read.table(paste0('./weather/',weatherName,".WTH"),header=TRUE,skip=4)
+    } else {
+      weather<-read.table(paste0(WeatherDir,weatherName,".WTH"),header=TRUE,skip=3)
+    }
   }else if(WeatherType=='CSV'){
     weather<-read.table(paste(weatherName,".csv",sep=""),header=TRUE,sep=",",stringsAsFactors=FALSE)[,c(1:5)]}else if(WeatherType=='Rdata'){
       eval(parse(text=paste0("load('",WeatherDir,weatherName,".RData')")))
@@ -286,8 +300,9 @@ WeatherFunction=function(weatherName,irrigation,GridsimulationSwitch,WeatherType
   #tranfer DOY to DATE
   weather$DATE=sprintf("%05d",as.numeric(weather$DATE))
   weather$IDATE=DOYtoDate(weather$DATE)
-  if(!is.na(irrigation[1,1])){irrigation$IrrDate=DOYtoDate(irrigation$IrrDate)}
-  
+  # FIXME Anyela
+  #if(!is.na(irrigation[1,1])){irrigation$IrrDate=DOYtoDate(irrigation$IrrDate)}
+  if(!is.na(irrigation)){irrigation$IrrDate=DOYtoDate(irrigation$IrrDate)}
   
   #############    remove letter if weather includes letter
   Dropletter=function(weather)
@@ -305,7 +320,9 @@ WeatherFunction=function(weatherName,irrigation,GridsimulationSwitch,WeatherType
   weather$RAIN<-Dropletter(weather$RAIN)
   
   #############  add irrigation to rainfall  
-  if(nrow(irrigation)>0)
+  # FIXME Anyela
+  #if(nrow(irrigation)>0)
+  if(!is.na(irrigation))
   {
     for(i in 1:nrow(irrigation))
     {

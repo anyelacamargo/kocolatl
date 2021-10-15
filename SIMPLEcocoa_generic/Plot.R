@@ -81,19 +81,21 @@ gplot=function(Res_Daily,Res_Summary,Obs_Biomass,Obs_FSolar){
     #   theme(legend.position = "none",
     #         plot.title=element_text(size=14, hjust=0, vjust=0))
     
-    cosecha=Res_daily$MaturityDay[1]
+    cosecha=Res_daily$MaturityDay[1]# FIXME Angela
     R_summary<-Res_Summary[,c(-6,-7)] 
     R_summary<-R_summary[order(R_summary$Crop),]
-    print(R_summary)
+    R_summary2<-Res_Summary[,c(-5,-6,-7)] # FIXME Angela
+    print(R_summary2)# FIXME Angela
     
     ##### calculate RMSE and RRMSE for yield
     R_summary<-R_summary[!is.na(R_summary$Obs_Yield),]
     RMSE_yield<-sqrt(mean((R_summary$Sim_Yield-R_summary$Obs_Yield)^2))
     RRMSE_yield<-RMSE_yield/mean(R_summary$Obs_Yield)
     
-    print(paste("RMSE for yield is: ",round(RMSE_yield,0),"kg.ha-1"))
-    print(paste("RRMSE for yield is: ",100*round(RRMSE_yield,3),"%",sep=""))
+    #print(paste("RMSE for yield is: ",round(RMSE_yield,0),"kg.ha-1"))
+    #print(paste("Error RRMSE for yield is: ",100*round(RRMSE_yield,3),"%",sep=""))
     print(paste("Dia de cosecha:", cosecha))
+    print(paste("Rendimiento potencial:", Res_summary$Yield,"kg.ha-1 año"))
     
     Obs_Biomass$LableCrop=paste0(Obs_Biomass$Crop,"_",Obs_Biomass$Label)
     Obs_FSolar$LableCrop=paste0(Obs_FSolar$Crop,"_",Obs_FSolar$Label)
@@ -137,4 +139,5 @@ gplot=function(Res_Daily,Res_Summary,Obs_Biomass,Obs_FSolar){
     # windows(width=16, height=8)
     # multiplot(P5, P3, P4, cols=3)
 }
+
 
