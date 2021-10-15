@@ -27,8 +27,8 @@ RunModel = function(i){
 #enter here date of flowering year-month-day
 fecha_floracion <- as.Date("2020-06-23") 
 date <- format(fecha_floracion, format="%Y-%b-%d")
-year <- (format(fecha_floracion, format="%y"))
-day = (format(fecha_floracion, format="%j"))
+year <- format(fecha_floracion, format="%y")
+day = format(fecha_floracion, format="%j")
 doy=as.numeric(paste(year, day, sep = ''))
 
 organise_data <- function(GridsimulationSwitch){
