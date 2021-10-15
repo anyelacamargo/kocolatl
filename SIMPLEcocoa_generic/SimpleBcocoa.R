@@ -27,8 +27,8 @@ RunModel = function(i){
 #enter here date of flowering year-month-day
 fecha_floracion <- as.Date("2020-06-23") 
 year <- format(fecha_floracion, format="%y")
-day = format(fecha_floracion, format="%j")
-doy=as.numeric(paste(year, day, sep = ''))
+day <- format(fecha_floracion, format="%j")
+doy <- as.numeric(paste(year, day, sep = ''))
 
 organise_data <- function(GridsimulationSwitch){
   
@@ -37,7 +37,7 @@ organise_data <- function(GridsimulationSwitch){
                            ,stringsAsFactors=FALSE)
     treatment <- read.table("./Input/Treatment.csv",header=TRUE,sep=","
                           ,stringsAsFactors=FALSE);treatment$Species.=tolower(treatment$Species.)
-    treatment$SowingDate<-doy
+    treatment$SowingDate <- doy
     cultivar <- read.table("./Input/Cultivar.csv",header=TRUE,sep=","
                          ,stringsAsFactors=FALSE);cultivar$Species.=tolower(cultivar$Species.)
     
