@@ -1,8 +1,0 @@
-Species*,Exp*,Trt*,Label,Weather,CO2,SowingDate,HarvestDate,SoilName*,Cultivar*,IrrigationTrt,MaxIntercept,InitialBio,InitialTT ,InitialFsolar ,NOTE
-dummy crop,Exp name,1,Dummy label name,Dummy weather,350,95355,,Dummy soil,Dummy cultivar,2,0.95,1,0,0.001,Trt2
-bananacol,COLena,1,North Colombia,COLBAN2019,381,18344,19365,Loamy sand9,Cavendish,1,0.95,1,0,0.001,Trt1
-cocoa,KOKOlatl,1,Santander,KOKOS,400,,,Loamy sand4,ICS 95,1,0.95,1,0,0.001,Trt1
-cocoap,KOKOapar,2,Apartado Ant.,KOKOAPAR,400,,,Loamy sand4,ICS 95,1,0.95,1,0,0.001,Trt2
-cocoar,KOKOarauca,3,Arauca,KOKOARAU,400,,,Loamy sand4,ICS 95,1,0.95,1,0,0.001,Trt3
-cocoac,KOKOcali,4,Cali,KOKOCALI,400,,,Loamy sand4,ICS 95,1,0.95,1,0,0.001,Trt4
-cocoacl,KOKOcaldas,5,Caldas,KOKOCALDAS,400,,,Loamy sand4,ICS 95,1,0.95,1,0,0.001,Trt5

@@ -1,7 +1,0 @@
-ON_Off,Species*,Exp*,Trt*,Label,Water,NOTE
-0,dummy crop,Exp name,1,Dummy label name,yes,Trt2
-1,cocoa,KOKOlatl,1,Santander,yes,Trt1
-0,cocoap,KOKOapar,2,Apartado Ant.,yes,Trt2
-0,cocoar,KOKOarauca,3,Saravena,yes,Trt3
-0,cocoac,KOKOcali,4,Cali,yes,Trt4
-0,cocoacl,KOKOcaldas,5,Caldas,yes,Trt5
